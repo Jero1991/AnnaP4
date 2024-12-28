@@ -219,6 +219,10 @@ public class Controller {
         return modelFacade.getAllSeries();
     }
 
+    public Persona findClientCartera(String correuPersona) {
+        return modelFacade.findClientCartera(correuPersona);
+    }
+
 
 /*
     @Override

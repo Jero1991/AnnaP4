@@ -25,6 +25,8 @@ public class Persona {
     public Persona(String nom, String pwd) {
         this.pwd = pwd;
         this.nom = nom;
+        this.watchedHistory = new WatchedHistory();
+        this.whatNext = new WhatNext();
     }
 
     public Persona(String correu, String nom, String cognoms, String dni, String password) {
@@ -33,6 +35,8 @@ public class Persona {
         this.cognoms = cognoms;
         this.dni = dni;
         this.pwd = password;
+        this.watchedHistory = new WatchedHistory();
+        this.whatNext = new WhatNext();
     }
 
     public String getPwd() {

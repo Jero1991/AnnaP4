@@ -342,5 +342,12 @@ public class ModelFacade {
     }
 
 
-
+    public Persona findClientCartera(String correuPersona) {
+        try{
+            return showTVTimePersones.findPersonaCartera(correuPersona);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
 }

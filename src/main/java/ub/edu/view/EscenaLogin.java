@@ -3,6 +3,7 @@ package ub.edu.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import ub.edu.controller.MessagesCAT;
+import ub.edu.model.Persona;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -77,6 +78,8 @@ public class EscenaLogin extends Escena {
             main.setController(controller);
             this.controller.getSessionMemory().setCorreuPersona(correuPersona);
 
+            Persona client = controller.findClientCartera(correuPersona);
+            client.getWatchedHistory().addObserver(escenaMain);
 
 
             escenaMain.start();
