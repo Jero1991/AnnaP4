@@ -1,12 +1,12 @@
 package ub.edu;
 
 import javafx.application.Application;
+
 import javafx.stage.Stage;
 import ub.edu.controller.Controller;
 import ub.edu.view.Vista;
 
 import java.io.IOException;
-
 
 public class AppMain extends Application{
     private Controller controller;

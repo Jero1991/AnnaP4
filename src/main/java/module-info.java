@@ -1,4 +1,4 @@
-module ub.edu.showTVTime {
+module ub.edu {
     requires javafx.controls;
     requires javafx.fxml;
 

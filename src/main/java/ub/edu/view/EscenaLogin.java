@@ -76,6 +76,9 @@ public class EscenaLogin extends Escena {
             EscenaMain escenaMain = ((EscenaMain) main);
             main.setController(controller);
             this.controller.getSessionMemory().setCorreuPersona(correuPersona);
+
+
+
             escenaMain.start();
             stage.close();
         } catch (IOException e) {
