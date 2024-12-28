@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="350.0" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ub.edu.view.EscenaMenuAccessos">
+    <children>
+      <Label text="Selecciona com vols accedir al grup">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+        <Button mnemonicParsing="false" onAction="#onCodiAcces" prefHeight="40.0" prefWidth="140.0" text="Codi" />
+        <Button mnemonicParsing="false" onAction="#onRuleta" prefHeight="40.0" prefWidth="140.0" text="Ruleta" />
+        <Button mnemonicParsing="false" onAction="#onTriviaJoc" prefHeight="40.0" prefWidth="140.0" text="Trivia Joc" />
+    </children>
+</VBox>

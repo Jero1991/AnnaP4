@@ -1,0 +1,279 @@
+@startuml
+
+
+top to bottom direction
+
+
+class Escena {
+  # controller: Controller
+  # stage: Stage
+  + setController(Controller): void
+  + setStage(Stage): void
+}
+class EscenaEpisodiDetalls {
+  + nomEpisodi_text: Text
+  - id_contingut_audiovisual: String
+  + data_text_caracteristiques: Text
+  + data_numEpisodi: Text
+  + data_valoracio: Text
+  + data_durada: Text
+  + data_image_image: ImageView
+  + data_temporada: Text
+  + valorar_btn: Button
+  + data_nom_Serie: Text
+  + data_anyEstrena: Text
+  + data_descripcio: Text
+  - numTemporada: Integer
+  - correu_persona: String
+  - numEpisodi: Integer
+  + onBtnWatchedHistoryAddClick(): void
+  + onBtnValorarClick(): void
+  + initData(): void
+  + start(): void
+}
+class EscenaEpisodisSelector {
+  - ESPAI_ENTRE_BOTONS: double
+  + episodi_pane: AnchorPane
+  - num_temporada: Integer
+  - nom_serie: String
+  + episodi_btn: Button
+  - correu_persona: String
+  + start(): void
+  + popularEpisodis(String, Integer): void
+  - createEpisodiButton(Integer, String, double, double, double, double): Button
+  - mostrarEpisodiDetalls(Integer): void
+}
+enum EscenaFactory << enumeration >> {
+  + INSTANCE: 
+  ~ creaEscena(String, String): Escena
+  + values(): EscenaFactory[]
+  + valueOf(String): EscenaFactory
+}
+class EscenaInvitacioCodi {
+  - feedbackLabel: Label
+  - invitationCodeField: TextField
+  - correuPersona: String
+  - nomGrup: String
+  - accederButton: Button
+  - checkInvitationCode(): void
+  + start(): void
+  + accedir(): void
+}
+class EscenaLogin {
+  + login_btn: Button
+  + cancel_btn: Button
+  - correu: String
+  + register_btn: Button
+  + login_pwd: PasswordField
+  + login_correu: TextField
+  # onLoginButtonClick(): void
+  - event_goMain(String): void
+  # onRegisterWindow(): void
+  + start(): void
+  + onCancelButtonClick(): void
+}
+class EscenaMain {
+  + contingut_audiovisual_pane: AnchorPane
+  - ESPAI_ENTRE_BOTONS: double
+  + button_punts_main: Button
+  + obra_audiovisual_btn: Button
+  + tableWatchedList: TableView
+  + button_izq_resetFiltres_main: Button
+  + textPrincipal: Text
+  + tableTop10Valorades: TableView
+  + nomColumnWatchedList: TableColumn
+  + valueColumn: TableColumn
+  + button_imdb_main: Button
+  + nomColumn: TableColumn
+  + comboBox_main_tipus: ComboBox
+  + comboBox_main_tematica: ComboBox
+  + GlobalPersonalButton: Button
+  + image_main: ImageView
+  + asignarimagen(): void
+  - popularWatchedList(): void
+  + onButtonIzqResetFiltresClick(): void
+  + onGlobalPersonalButton(): void
+  + onButtonImdbClick(): void
+  + onButtonGestionarGrupsClick(): void
+  - popularObresAudiovisualsPerNom(): void
+  + popularComboBoxTipus(): void
+  + start(): void
+  - createObraAudiovisualButton(String, String, double, double, double, double): Button
+  - mostrarFinestraObraAudiovisual(String): void
+  + popularComboBoxTematiques(): void
+  + onBtnLogOut(): void
+  + onCheckBoxPelis(ActionEvent): void
+  + onButtonPuntsClick(): void
+  + assignarTextPrincipal_Correu(String): void
+}
+class EscenaMenuAccessos {
+  - triviaJoc: Button
+  - ruleta: Button
+  - codiAcces: Button
+  + onRuleta(): void
+  + onTriviaJoc(): void
+  + start(): void
+  + onCodiAcces(): void
+}
+class EscenaPelliculaDetalls {
+  - correu_persona: String
+  + data_text_dataAnyPrimeraEmissio: Text
+  + data_text_idioma: Text
+  + data_text_durada: Text
+  + nomPellicula_text: Text
+  + data_text_nom: Text
+  + data_text_caracteristiques: Text
+  + data_text_descripcio: Text
+  + data_image_image: ImageView
+  + valorar_btn: Button
+  - nom_contingut_audiovisual: String
+  + watched_btn: Button
+  + initData(): void
+  + onBtnValorarClick(): void
+  + onBtnWatchedHistoryAddClick(): void
+  + start(): void
+}
+class EscenaPerfil {
+  + groupsToFollow: Button
+  + followToMember: Button
+  + followToGroups: Button
+  + nomFollowingGroupsColumna: TableColumn
+  + nomAllGroupsColumna: TableColumn
+  + tableMemberGroups: TableView
+  - correuPersona: String
+  + memberToFollow: Button
+  + nomMemberGroupsColumna: TableColumn
+  + tableFollowingGroups: TableView
+  + tableAllgroups: TableView
+  + OnBtnFollowToGroup(): void
+  + start(): void
+  - popularTaulaAllGroups(): void
+  + onBtnGroupToFollow(): void
+  - popularTaulaMemberGroups(): void
+  - popularTaulaFollowingGroups(): void
+  + onBtnFollowToMember(): void
+  - initData(): void
+  + OnBtnMemberToFollow(): void
+}
+class EscenaRegister {
+  + registre_pwd: PasswordField
+  + registre_pwd_repeat: PasswordField
+  + registre_btn: Button
+  + registre_cognoms: TextField
+  + registre_dni: TextField
+  + cancellar_btn: Button
+  + registre_correu: TextField
+  + registre_nom: TextField
+  + start(): void
+  - event_goLogin(String): void
+  + onRegistreButtonClick(): void
+  + onTornarLoginButtonClick(): void
+}
+class EscenaRuleta {
+  - spinningLabel: Label
+  - nomGrup: String
+  - options: String[]
+  - correuPersona: String
+  - resultLabel: Label
+  - spinButton: Button
+  - accedirButton: Button
+  - handleSpin(): void
+  + onAccedirButton(): void
+  - spinRoulette(): void
+  + start(): void
+}
+class EscenaSerieDetalls {
+  + data_text_durada: Text
+  + data_text_descripcio: Text
+  + data_image_image: ImageView
+  - correu_persona: String
+  + nomSerie_text: Text
+  + data_text_idioma: Text
+  + data_text_caracteristiques: Text
+  - nom_contingut_audiovisual: String
+  + data_text_nom: Text
+  + data_text_dataAnyPrimeraEmissio: Text
+  + initData(): void
+  + onBtntemporadesViewAddClick(): void
+  + onBtnWatchedHistoryAddClick(): void
+  + start(): void
+}
+class EscenaTemporadesDetalls {
+  + temporada_btn: Button
+  + temporada_pane: AnchorPane
+  - correu_persona: String
+  - ESPAI_ENTRE_BOTONS: double
+  - id_serie: String
+  + start(): void
+  + popularTemporades(String): void
+  - mostrarEpisodisSelector(Integer): void
+  + onBtnWatchedHistoryAddClick(): void
+  - createTemporadaButton(Integer, String, double, double, double, double): Button
+}
+class EscenaTriviaJoc {
+  - accedirButton: Button
+  - answerGroup: ToggleGroup
+  - nomGrup: String
+  - correctAnswer: String
+  - option1: RadioButton
+  - option3: RadioButton
+  - feedbackLabel: Label
+  - correuPersona: String
+  - questionLabel: Label
+  - option2: RadioButton
+  - loadRandomQuestion(): void
+  - submitAnswer(): void
+  + start(): void
+  + accedir(): void
+}
+class EscenaValorarObra {
+  + radioButton_Group1_Like: RadioButton
+  + radioButton_Group1_Dislike: RadioButton
+  + radioButton_G1_Text1: RadioButton
+  + radioButton_G2_Text2: RadioButton
+  - correu_persona: String
+  + radioButton_Group3_Text1: RadioButton
+  + textField_Group2: TextField
+  + radioButton_Group3_Text3: RadioButton
+  + radioButton_Group3_Text5: RadioButton
+  + button_cancel: Button
+  + radioButton_Group3_Text2: RadioButton
+  + button_valorar: Button
+  + radioButton_Group3_Text4: RadioButton
+  + radioButton_G3_Text3: RadioButton
+  - nom_obra_audiovisual: String
+  + start(): void
+  + initObservers(): void
+  + onButtonCancelarClick(): void
+  + onButtonValorarClick(): void
+  - initialize_RB(): void
+  + initDisabled(): void
+}
+class Vista {
+  # controller: Controller
+}
+
+
+EscenaEpisodiDetalls     -up-|>  Escena
+
+EscenaEpisodisSelector  -up-|>   Escena
+
+EscenaFactory            -->  Escena
+EscenaLogin              -up-|>  Escena
+EscenaMain               --|> Escena
+
+EscenaPelliculaDetalls   -up-|>  Escena
+EscenaRegister           -up-|>  Escena
+
+EscenaSerieDetalls       -up-|> Escena
+
+EscenaTemporadesDetalls  -up-|>  Escena
+EscenaValorarObra        -up-|> Escena
+
+Vista                    -down->  Escena
+EscenaMenuAccessos        --|> Escena
+EscenaInvitacioCodi      --^  Escena
+EscenaPerfil             --^  Escena
+EscenaRuleta             --^  Escena
+EscenaTriviaJoc          --^  Escena
+@enduml

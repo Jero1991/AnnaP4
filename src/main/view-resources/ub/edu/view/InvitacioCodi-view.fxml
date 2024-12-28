@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" spacing="20" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ub.edu.view.EscenaInvitacioCodi">
+
+    <Label style="-fx-font-size: 18px;" text="Enter Invitation Code" />
+
+    <TextField fx:id="invitationCodeField" promptText="Enter code here" style="-fx-font-size: 14px;" />
+
+    <Label fx:id="feedbackLabel" style="-fx-font-size: 16px;" text="" />
+   <Button mnemonicParsing="false" onAction="#checkInvitationCode" text="Comprovar" />
+
+    <Button fx:id="accederButton" onAction="#accedir" style="-fx-font-size: 14px;" text="Accedir" />
+
+</VBox>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="482.0" prefWidth="1089.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ub.edu.view.EscenaMain">
+   <children>
+      <ImageView fitHeight="56.0" fitWidth="65.0" layoutX="27.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../static-resources/uncleBob.png" />
+         </image>
+      </ImageView>
+      <!-- Imagen arriba a la izquierda -->
+      <ImageView fx:id="image_main" fitHeight="56.0" fitWidth="78.0" layoutX="103.0" layoutY="22.0" preserveRatio="true">
+         <image>
+            <Image url="@../static-resources/logo8.png" />
+         </image></ImageView>
+
+      <!-- Texto principal de la ventana -->
+      <Text fx:id="textPrincipal" layoutX="189.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#asignarTexto">
+         <font><Font size="26.0" /></font>
+      </Text>
+
+      <!-- Botton reset_Filtros arriba en medio izquierda -->
+      <Button fx:id="button_izq_resetFiltres_main" layoutX="342.0" layoutY="98.0" mnemonicParsing="false" onAction="#onButtonIzqResetFiltresClick" prefHeight="25.0" prefWidth="94.0" text="Reset Filtres" />
+
+
+      <!-- Texto izquierda -->
+      <Text layoutX="27.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contingut Audiovisual" textAlignment="CENTER">
+         <font><Font size="25.0" /></font>
+      </Text>
+
+      <!-- Scroll de las Contenidos digitales (izquierda)-->
+      <ScrollPane layoutX="25.0" layoutY="139.0" prefHeight="295.0" prefWidth="410.0">
+        <content>
+          <AnchorPane fx:id="contingut_audiovisual_pane" minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="400.0">
+             <children>
+                <Button fx:id="obra_audiovisual_btn" layoutX="11.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="390.0" text="Obra Audiovisual" />
+             </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+
+      <!-- Texto de la derecha-->
+      <Text layoutX="760.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WatchNext" textAlignment="CENTER">
+         <font><Font size="25.0" /></font>
+      </Text>
+
+
+      <!-- Scroll de la derecha-->
+      <ScrollPane hbarPolicy="NEVER" layoutX="760.0" layoutY="139.0" prefHeight="295.0" prefWidth="300.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="290.0">
+               <children>
+                  <TableView fx:id="tableTop10Valorades" prefHeight="295.0" prefWidth="280.0">
+                     <columns>
+                        <TableColumn fx:id="nomColumn" prefWidth="210.0" text="Nom" />
+                        <TableColumn fx:id="valueColumn" prefWidth="70.0" text="Value" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+
+      <!--ComboBox de abajo izquierda-->
+      <ComboBox fx:id="comboBox_main_tipus" layoutX="25.0" layoutY="444.0" prefHeight="25.0" prefWidth="160.0" promptText="Filtrar per Tipus" />
+      <ComboBox fx:id="comboBox_main_tematica" layoutX="276.0" layoutY="444.0" prefHeight="25.0" prefWidth="160.0" promptText="Filtrar per Temàtica" />
+
+      <!-- Botones de Criterios abajo derecha -->
+      <Button fx:id="button_punts_main" layoutX="760.0" layoutY="444.0" mnemonicParsing="false" onAction="#onButtonPuntsClick" prefHeight="26.0" prefWidth="130.0" text="Punts" />
+      <Button fx:id="button_imdb_main" layoutX="930.0" layoutY="444.0" mnemonicParsing="false" onAction="#onButtonImdbClick" prefHeight="26.0" prefWidth="130.0" text="IMDb" />
+      <ScrollPane hbarPolicy="NEVER" layoutX="450.0" layoutY="139.0" prefHeight="295.0" prefWidth="300.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="290.0">
+               <children>
+                  <TableView fx:id="tableWatchedList" prefHeight="295.0" prefWidth="280.0">
+                     <columns>
+                        <TableColumn fx:id="nomColumnWatchedList" prefWidth="278.39997559785843" text="Nom" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Text layoutX="450.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WatchedHistory" textAlignment="CENTER">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnLogOut" layoutX="966.0" layoutY="46.0" mnemonicParsing="false" onAction="#onBtnLogOut" prefHeight="26.0" prefWidth="94.0" text="LogOut" />
+      <Button fx:id="gestionarGrups" layoutX="787.0" layoutY="46.0" mnemonicParsing="false" onAction="#onButtonGestionarGrupsClick" prefHeight="26.0" prefWidth="160.0" text="Gestionar Grups" />
+      <Button fx:id="GlobalPersonalButton" layoutX="941.0" layoutY="97.0" mnemonicParsing="false" onAction="#onGlobalPersonalButton" prefHeight="26.0" prefWidth="119.0" text="Llista Personal" />
+
+
+   </children>
+</AnchorPane>

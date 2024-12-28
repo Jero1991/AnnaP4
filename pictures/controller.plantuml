@@ -1,0 +1,97 @@
+@startuml
+
+top to bottom direction
+
+class Controller {
+  - showTVTimePersones: ShowTVTimePersones
+  - sessionMemory: SessionMemory
+  - showTVTimeCataleg: ShowTVTimeCataleg
+  - resourcesFacade: ResourcesFacade
+  - modelFacade: ModelFacade
+  + valorarContingut(String, String, String, String): boolean
+  + getSessionMemory(): SessionMemory
+  + getDetallsPelicula(String): HashMap<Object, Object>
+  + getEpisodiDetalls(String, Integer, Integer): HashMap<Object, Object>
+  + addEpisodeToWatchedHistory(String, int, int, String): boolean
+  + visualitzarMemberGrupsPerPersona(String): List<HashMap<Object, Object>>
+  + sollicitarAcces(String, String, String): HashMap<String, String>
+  + esPelicula(String): boolean
+  + getWatchedHistory(String): List<HashMap<Object, Object>>
+  + visualitzarGrupsPerNom(): List<HashMap<Object, Object>>
+  + visualitzarSeriesPerNom(): List<HashMap<Object, Object>>
+  + visualitzarPelisPerNom(): List<HashMap<Object, Object>>
+  + addMember2Grup(String, String, int): String
+  + loguejarPersona(String, String): String
+  + visualitzarFollowingGrupsPerPersona(String): List<HashMap<Object, Object>>
+  + addTemporadaToWatchedHistory(String, int, String): boolean
+  + getWatchNext(String): List<HashMap<Object, Object>>
+  + getAllTemporadesDeSerie(String): List<HashMap<Object, Object>>
+  + registrePersona(String, String, String, String, String): String
+  + getDetallsSerie(String): HashMap<Object, Object>
+  + getAllTematiques(): List<HashMap<Object, Object>>
+  + addToWatchedHistory(String, String): boolean
+  + comprovarAcces(String, String, String, String): String
+  + visualitzarContingutsDigitalsPerNom(): List<HashMap<Object, Object>>
+  + addFollower2Grup(String, String): String
+  + getAllEpisodis(String, Integer): List<HashMap<Object, Object>>
+}
+enum MessagesCAT << enumeration >> {
+  + RespostaIncorrecta: 
+  + SuccessfulFormatEmail: 
+  + NotAvailableShowsException: 
+  + SeasonNotFoundException: 
+  - message: String
+  + MemberNotFoundException: 
+  + NotAvailableMovieException: 
+  + FollowingException: 
+  + SuccessfulRegistreValid: 
+  + NotSecurePasswordException: 
+  + PreguntaNotFound: 
+  + SuccessfulAddMemberGrup: 
+  + ShowWithoutSeasonException: 
+  + PersonaExistsException: 
+  + FormatIncorrecteException: 
+  + NotAvailableGroupsException: 
+  + SuccessfulFindGrup: 
+  + DuplicateEpisodeException: 
+  + SuccessfulAddedWatchedHistory: 
+  + SuccessfulLogin: 
+  + SuccessfulAddFollowerGrup: 
+  + RespostaCorrecta: 
+  + PersonaNotFoundException: 
+  + SuccessfulFindPersona: 
+  + DuplicateSeasonException: 
+  + SuccessfulSecurePassword: 
+  + NotAvailableShowException: 
+  + NotAvailableGroupException: 
+  + MemberExistsException: 
+  + WrongPasswordException: 
+  + ShowWithoutSeasonsException: 
+  + DuplicateGrupInteresException: 
+  + SuccessfulAddPreguntaQuiz: 
+  + NotAvailableMoviesException: 
+  + getMessage(): String
+  + translate(Exception): String
+  + values(): MessagesCAT[]
+  + valueOf(String): MessagesCAT
+}
+class SessionMemory {
+  ~ numTemporada: Integer
+  ~ nomObraAutiovisual: String
+  ~ titolEpisodi: String
+  - tipusObraTop: String
+  ~ numEpisodi: Integer
+  ~ nomSerie: String
+  ~ nomGrup: String
+  ~ nomTematica: String
+  ~ correuPersona: String
+  ~ nomPelicula: String
+  ~ tipusValoracio: String
+  ~ tipusObra: String
+  ~ tipusStrategy: String
+}
+
+Controller     -left->  MessagesCAT : uses
+Controller    "1" -right-> "1" SessionMemory : uses
+
+@enduml

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ub.edu.view.EscenaPerfil">
+   <children>
+
+
+       <!-- Scroll de l'esquerra-->
+       <ScrollPane hbarPolicy="NEVER" layoutX="40.0" layoutY="139.0" prefHeight="295.0" prefWidth="300.0">
+           <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="290.0">
+                   <children>
+                       <TableView fx:id="tableAllgroups" prefHeight="295.0" prefWidth="280.0">
+                           <columns>
+                               <TableColumn fx:id="nomAllGroupsColumna" prefWidth="210.0" text="Nom" />
+                           </columns>
+                       </TableView>
+                   </children>
+               </AnchorPane>
+           </content>
+       </ScrollPane>
+       <!-- Scroll del mig-->
+       <ScrollPane hbarPolicy="NEVER" layoutX="400.0" layoutY="139.0" prefHeight="295.0" prefWidth="300.0">
+           <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="290.0">
+                   <children>
+                       <TableView fx:id="tableFollowingGroups" prefHeight="295.0" prefWidth="280.0">
+                           <columns>
+                               <TableColumn fx:id="nomFollowingGroupsColumna" prefWidth="210.0" text="Nom" />
+                           </columns>
+                       </TableView>
+                   </children>
+               </AnchorPane>
+           </content>
+       </ScrollPane>
+       <!-- Scroll de la derecha-->
+       <ScrollPane hbarPolicy="NEVER" layoutX="760.0" layoutY="139.0" prefHeight="295.0" prefWidth="300.0">
+           <content>
+               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="290.0">
+                   <children>
+                       <TableView fx:id="tableMemberGroups" prefHeight="295.0" prefWidth="280.0">
+                           <columns>
+                               <TableColumn fx:id="nomMemberGroupsColumna" prefWidth="210.0" text="Nom" />
+                           </columns>
+                       </TableView>
+                   </children>
+               </AnchorPane>
+           </content>
+       </ScrollPane>
+      <Text layoutX="40.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grups disponibles" wrappingWidth="300.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="400.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grups que segueixo">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="760.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Grups dels qual sóc membre">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnGroupToFollow" layoutX="347.0" layoutY="256.0" mnemonicParsing="false" onAction="#onBtnGroupToFollow" text="G-&gt;F" />
+      <Button fx:id="btnFollowToGroup" layoutX="347.0" layoutY="311.0" mnemonicParsing="false" onAction="#OnBtnFollowToGroup" text="F&lt;-G" />
+      <Button fx:id="btnFollowToMember" layoutX="705.0" layoutY="256.0" mnemonicParsing="false" onAction="#onBtnFollowToMember" text="F-&gt;M" />
+      <Button fx:id="btnMemberToFollow" layoutX="705.0" layoutY="311.0" mnemonicParsing="false" onAction="#OnBtnMemberToFollow" text="F&lt;-M" />
+
+   </children>
+</AnchorPane>

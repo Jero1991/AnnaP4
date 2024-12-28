@@ -1,0 +1,83 @@
+@startuml
+
+package controller{
+class Controller
+}
+package service {
+class DataService  {
+
+}
+class AbstractFactoryData {
+
+}
+class FactoryDB {
+  }
+class FactoryMOCK {
+  }
+}
+package model{
+class showTVTimeCataleg {
+  + findPelicula(String): Pelicula
+  + findTematica(String): Tematica
+  + findContingutDigital(String): ContingutDigital
+  + findGrup(String): GrupInteres
+  + findEpisodi(String, int, int): Episodi
+  + findSerie(String): Serie
+  + esPelicula(String): boolean
+
+}
+class showTVTimePersones {
+  + findPersonaCartera(String): Persona
+  + addPersona(Client): void
+}
+}
+
+package resources {
+class ResourcesFacade {
+    - showTVTimeCataleg: ShowTVTimeCataleg
+    - showTVTimePersones: ShowTVTimePersones
+    - modelFacade: ModelFacade
+    - dataService: DataService
+    - factory: AbstractFactoryData
+
+    + addNewPersona(String, String, String, String, String): void
+
+    + populateShowTVTimePersones(): void
+    + initCarteraPersones(): boolean
+
+    + populateShowTVTimeCataleg(): void
+    + populateFollowersMembersGrups(): void
+    + loadPelicules(): boolean
+    + loadSeries(): boolean
+    + loadTematiques(): boolean
+    + loadGrupsInteres(): boolean
+    - relacionarGrupsInteresTemes(): void
+    - relacionarPeliculesTemes(): void
+    - relacionarSeriesTemes(): void
+    + initPreguntesGrupInteres(): void
+
+    - initPerfilPersones(): void
+    - initWatchedHistory(): void
+    - initFollowerGrupsInteres(): void
+    - initMemberGrupsInteres(): void
+    + addRelacioFollowingGrupInteres(String, String, String): void
+    + addRelacioMemberGrupInteres(String, String, String, Integer): void
+
+    + initValoracions(): void
+    - iniValoracionsPelicules(): void
+    - iniValoracionsEpisodis(): void
+}
+
+
+ResourcesFacade       "1" o-right-> "1" DataService
+ResourcesFacade       "1" o-right-> "1" AbstractFactoryData
+AbstractFactoryData   <|-- FactoryDB
+AbstractFactoryData   <|--  FactoryMOCK
+controller.Controller         "1" -down->"1"ResourcesFacade
+DataService "1"-down-"1" AbstractFactoryData
+ResourcesFacade       "1" o-down-> "1" model.ModelFacade
+
+ResourcesFacade       "1" o-down-> "1" showTVTimeCataleg
+ResourcesFacade       "1" o-down-> "1" showTVTimePersones
+
+@enduml

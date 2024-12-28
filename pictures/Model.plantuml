@@ -1,0 +1,197 @@
+@startuml
+
+top to bottom direction
+
+
+class CarteraPersones {
+  - persones: List<Persona>
+  + add(Persona): void
+  + delete(String): void
+  + getPersona(int): Persona
+  + find(String): Persona
+  + getNumPersones(): int
+}
+class ModelFacade {
+  - showTVTimePersones: ShowTVTimePersones
+  - showTVTimeCataleg: ShowTVTimeCataleg
+  + getDetallsSerie(String): HashMap<Object, Object>
+  + addToWatchedHistoryList(String, String, String): boolean
+  + visualitzarGrupsPerNom(): List<HashMap<Object, Object>>
+  + getAllEpisodis(String, int): List<HashMap<Object, Object>>
+  + getAllTematiques(): List<HashMap<Object, Object>>
+  + getFollowingGrupsPerPersona(String): List<HashMap<Object, Object>>
+  + getAllPelicules(): List<HashMap<Object, Object>>
+  + loguejarSociStatus(String, String): void
+  + getEpisodiDetalls(String, Integer, Integer): HashMap<Object, Object>
+  + esPelicula(String): boolean
+  + addEpisodiToWatchedHistoryList(String, int, int, String, String): boolean
+  + getAllContingutsDigitalsPerNom(): List<HashMap<Object, Object>>
+  + getWatchNext(String): List<HashMap<Object, Object>>
+  + getAllSeries(): List<HashMap<Object, Object>>
+  + getWatchedHistory(String): List<HashMap<Object, Object>>
+  + getMemberGrupsPerPersona(String): List<HashMap<Object, Object>>
+  + valorarContingut(String, String, String, String): boolean
+  + getAllTemporadesDeSerie(String): List<HashMap<Object, Object>>
+  + addMemberGrup(String, String, int): void
+  + addTemporadaToWatchedHistoryList(String, int, String, String): boolean
+  + addFollowerGrup(String, String): void
+  + getDetallsPelicula(String): HashMap<Object, Object>
+  + sollicitarAcces(String, String, String): HashMap<String, String>
+  + comprovarAcces(String, String, String, String): String
+}
+class Persona {
+  - nompropi: String
+  - cognoms: String
+  - pwd: String
+  - dni: String
+  - nom: String
+}
+class Seguretat {
+  + isPasswordSegur(String): boolean
+  + isMail(String): boolean
+}
+class ShowTVTimeCataleg {
+  - llistaGrupsInteres: List<GrupInteres>
+  - llistaSeries: List<Serie>
+  - llistaPelicules: List<Pelicula>
+  - llistaTematiques: List<Tematica>
+  + visualitzarGrupsPerNom(): Iterable<String>
+  - getGrupsList(): List<GrupInteres>
+  + getAllSeriesPerNom(): List<HashMap<Object, Object>>
+  + getAllGrupsInteres(): List<GrupInteres>
+  + addPelicula(String, String, String, int, String, int, float): void
+  + addTematicaToPelicula(String, String): void
+  + getAllPeliculesPerNom(): List<HashMap<Object, Object>>
+  + findEpisodi(String): Episodi
+  + findEpisodi(String, int, int): Episodi
+  + getAllGrupsInteresPerNom(): List<HashMap<Object, Object>>
+  + findGrupInteres(String): GrupInteres
+  + findContingutDigital(String): ContingutDigital
+  + visualitzarTemporadesSerie(String): Iterable<String>
+  + findGrup(String): GrupInteres
+  + addPelicula(String, int, int): void
+  + addEpisodi(String, int, int, String, int): void
+  + addGrup(String, String): void
+  + afegirSerie2Grup(String, String): void
+  + getAllTematiques(): List<Tematica>
+  + findTematica(String): Tematica
+  + getAllPeliculesPerEstrena(): List<HashMap<Object, Object>>
+  + setLlistaTematiques(List<Tematica>): void
+  + setLlistaSeries(List<Serie>): void
+  + addTematica(String): void
+  + esPelicula(String): boolean
+  + findTemporada(String, int): Temporada
+  + getAllPelicules(): List<Pelicula>
+  + findSerie(String): Serie
+  + getAllSeries(): List<Serie>
+  + getLlistaNomsPelicules(List<Pelicula>): List<HashMap<Object, Object>>
+  + setLlistaGrupsInteres(List<GrupInteres>): void
+  + addSerie(String, int): void
+  + findPelicula(String): Pelicula
+  + getAllContingutsDigitals(): List<ContingutDigital>
+  + setLlistaPelicules(List<Pelicula>): void
+  + addTemporada(String, int): void
+  + addSerie(String, String, String, int, String, int): void
+  + visualitzaEpisodisTemporadaSerie(String, int): Iterable<String>
+  + visualitzarPelisPerTematica(String): List<HashMap<Object, Object>>
+  + removeTemporada(String, int): void
+}
+class ShowTVTimePersones {
+  - cartera: CarteraPersones
+  + getCarteraPersones(): CarteraPersones
+  + setCarteraPersones(List<Persona>): void
+  + findPersonaCartera(String): Persona
+  + addPersona(Persona): void
+}
+
+
+
+enum cataleg.ContingutType << enumeration >> {
+  + Episodi
+  + Pelicula
+  + Serie
+  + Temporada
+}
+class cataleg.ContingutDigital {
+  - llistaTematiques: List<Tematica>
+  - estrena: String
+  - valoracioImdb: float
+  # durada: int
+  # idioma: String
+  - descripcio: String
+  - titol: String
+  + setLlistaTematiques(List<Tematica>): voi
+}
+class cataleg.Episodi {
+  - descripcio: String
+  - llistaTematiques: List<Tematica>
+  - titol: String
+  - nomSerie: String
+  - anyEstrena: String
+  - url: String
+  - numTemporada: int
+  - valoracioInicial: float
+  - durada: int
+  - numEpisodi: int
+
+}
+class cataleg.GrupInteres {
+  - contingutDigitals: List<ContingutDigital>
+  - tematiques: List<Tematica>
+  - codiAcces: String
+  - nomGrupInteres: String
+  - descripcioGrupInteres: String
+}
+class cataleg.Pelicula {
+  - url: String
+  - valoracioInicial: float
+}
+class cataleg.Serie {
+  - imatgeUrl: String
+  - llistaTemporades: List<Temporada>
+  + findEpisodi(int, int): Episodi
+  + findTemporada(int): Temporada
+  + findEpisodi(String): Episodi
+  + addTemporada(int): void
+  + getNumTemporades(): int
+  + visualitzarTemporadesSerie(): Iterable<String>
+  + addEpisodiToTemporada(int, int, String, int): void
+  + visualitzarEpisodisTemporada(int): Iterable<String>
+  + addTemporada(Temporada): void
+}
+class cataleg.Tematica {
+  - nomTematica: String
+}
+class cataleg.Temporada {
+  - nomSerie: String
+  - numTemporada: int
+  - llistaEpisodis: List<Episodi>
+  + addEpisodi(int, String, int): void
+  + findEpisodi(int): Episodi
+  + findEpisodi(String): Episodi
+  + addEpisodi(Episodi): void
+  + visualitzarEpisodisTemporada(): Iterable<String>
+}
+
+cataleg.ContingutDigital "1" *-left-> "*" cataleg.Tematica
+cataleg.GrupInteres      "1" *-[#595959,plain]-> "*" cataleg.ContingutDigital
+cataleg.GrupInteres      "1" *-[#595959,plain]-> "*" cataleg.Tematica
+cataleg.Pelicula          -up-^  cataleg.ContingutDigital
+cataleg.Serie             -up-^  cataleg.ContingutDigital
+cataleg.Serie            "1" *-[#595959,plain]-> "*" cataleg.Temporada
+cataleg.Temporada        "1" *-[#595959,plain]-> "*" cataleg.Episodi
+
+
+CarteraPersones    "1" *-[#595959,plain]-> "*" Persona
+ModelFacade        "1" *-[#595959,plain]-> "1" ShowTVTimeCataleg
+ModelFacade        "1" *-[#595959,plain]-> "1" ShowTVTimePersones
+ModelFacade        "1" -left-> "1" Seguretat
+ShowTVTimePersones "1" *-[#595959,plain]-> "1" CarteraPersones
+ShowTVTimeCataleg "1" *-left->"*" cataleg.ContingutDigital
+ShowTVTimeCataleg "1" *-left->"1" cataleg.ContingutType
+ShowTVTimeCataleg "1" *-left->"1" cataleg.GrupInteres
+ShowTVTimeCataleg "1" -->"1" cataleg.Tematica
+
+Controller "1"--left--"1" ModelFacade: "            uses     "
+
+@enduml
