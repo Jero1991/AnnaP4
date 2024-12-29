@@ -3,6 +3,7 @@ package ub.edu.model.cataleg;
 
 import ub.edu.model.MembershipStrategy;
 import ub.edu.model.Persona;
+import ub.edu.model.quizz.Pregunta;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,6 +15,7 @@ public class GrupInteres {
 
     private List<Tematica> tematiques;
     private List<ContingutDigital> contingutDigitals;
+    private List<Pregunta> preguntes;
 
     //llista followers
     private List<Persona> followers;
@@ -36,8 +38,7 @@ public class GrupInteres {
         codiAcces = nomGrupInteres + "2024";
         followers = new ArrayList<>();
         membres = new ArrayList<>();
-
-
+        preguntes = new ArrayList<>();
     }
 
     public String getNom() {
@@ -134,5 +135,11 @@ public class GrupInteres {
 
     public boolean checkMembership(Persona persona) {
         return membershipStrategy.becomeMember(persona, this);
+    }
+
+    public Pregunta getPregunta() {
+        Random random = new Random();
+        int index = random.nextInt(preguntes.size());
+        return preguntes.get(index);
     }
 }

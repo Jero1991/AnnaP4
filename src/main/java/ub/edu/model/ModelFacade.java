@@ -3,6 +3,8 @@ package ub.edu.model;
 import ub.edu.controller.MessagesCAT;
 import ub.edu.model.cataleg.*;
 import ub.edu.model.exceptions.*;
+import ub.edu.model.quizz.Pregunta;
+
 import java.util.*;
 
 public class ModelFacade {
@@ -318,10 +320,10 @@ public class ModelFacade {
 
         Persona persona = showTVTimePersones.findPersonaCartera(correuPersona);
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
+        Pregunta pregunta = showTVTimeCataleg.findGrupInteres(nomGrup).getPregunta();
         // TODO Pràctica 4: comprova accés al grup segons el tipus d'acces
         // TODO Cal retornar al String si es "MEMBRE" o no
 
-<<<<<<< Updated upstream
         if (tipusAcces.equals("CODI")) {
             persona.addCodiAcces(dadaAcces);
             System.out.println(grup.getCodiAcces());
@@ -331,9 +333,15 @@ public class ModelFacade {
                 return "NO MEMBER";
             }
         }
+        if (tipusAcces.equals("QUIZZ")) {
+            pregunta
+            if(grup.checkMembership(persona)){
+                return "MEMBER";
+            } else {
+                return "NO MEMBER";
+            }
+        }
 
-=======
->>>>>>> Stashed changes
         return null;
     }
     // TODO OPT Pràctica 4: Fer els mètodes corresponents a treure un usuari com a Follower
