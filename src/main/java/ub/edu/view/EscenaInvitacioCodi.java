@@ -40,8 +40,10 @@ public class EscenaInvitacioCodi extends Escena {
     private void checkInvitationCode() {
         String code = invitationCodeField.getText();
         String resultat = controller.comprovarAcces("CODI", controller.getSessionMemory().getCorreuPersona(), controller.getSessionMemory().getNomGrup(), code);
+        System.out.println("Resultat: " + resultat);
         if (resultat!=null) {
             if (resultat.equals("MEMBER")) {
+                System.out.println("Codi d'invitació vàlid. Accedint...");
                 feedbackLabel.setText("Codi d'invitació vàlid. Accedint...");
                 accederButton.setDisable(false);
             } else {

@@ -320,6 +320,17 @@ public class ModelFacade {
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
         // TODO Pràctica 4: comprova accés al grup segons el tipus d'acces
         // TODO Cal retornar al String si es "MEMBRE" o no
+
+        if (tipusAcces.equals("CODI")) {
+            persona.addCodiAcces(dadaAcces);
+            System.out.println(grup.getCodiAcces());
+            if(grup.checkMembership(persona)){
+                return "MEMBER";
+            } else {
+                return "NO MEMBER";
+            }
+        }
+
         return null;
     }
     // TODO OPT Pràctica 4: Fer els mètodes corresponents a treure un usuari com a Follower

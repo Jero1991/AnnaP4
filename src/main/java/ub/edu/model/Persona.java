@@ -89,7 +89,9 @@ public class Persona extends Observable {
     }
 
     public void addGrupInteresMembership(GrupInteres grupInteres) {
-        grupsInteresMembership.add(grupInteres);
+        if (!grupsInteresMembership.contains(grupInteres)) {
+            grupsInteresMembership.add(grupInteres);
+        }
     }
 
     public void addPunts(int punts) {
@@ -117,14 +119,18 @@ public class Persona extends Observable {
     }
 
     public void afegirFollower(GrupInteres grup) {
-        grupsInteresFollowed.add(grup);
+        if (!grupsInteresFollowed.contains(grup)) {
+            grupsInteresFollowed.add(grup);
+        }
         System.out.println("Afegit a la llista de seguits");
         setChanged();
         notifyObservers("follower");
     }
 
     public void afegirMembre(GrupInteres grupInteres) {
-        grupsInteresMembership.add(grupInteres);
+        if (!grupsInteresMembership.contains(grupInteres)) {
+            grupsInteresMembership.add(grupInteres);
+        }
         System.out.println("Afegit a la llista de membres");
         setChanged();
         notifyObservers("member");

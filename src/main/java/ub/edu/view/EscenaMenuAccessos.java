@@ -18,7 +18,7 @@ public class EscenaMenuAccessos extends Escena{
 
     public void onCodiAcces() throws Exception{
 
-        controller.getSessionMemory().setMembershipStrategy("CodiAccesSrategy");
+        controller.getSessionMemory().setMembershipStrategy("CodiAccesStrategy");
         refreshMembershipStrategy();
 
         Escena escena = EscenaFactory.INSTANCE.creaEscena("InvitacioCodi-view", "Invitacio" );
