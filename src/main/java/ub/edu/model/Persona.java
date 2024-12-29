@@ -120,13 +120,13 @@ public class Persona extends Observable {
         grupsInteresFollowed.add(grup);
         System.out.println("Afegit a la llista de seguits");
         setChanged();
-        notifyObservers();
+        notifyObservers("follower");
     }
 
     public void afegirMembre(GrupInteres grupInteres) {
         grupsInteresMembership.add(grupInteres);
         System.out.println("Afegit a la llista de membres");
         setChanged();
-        notifyObservers();
+        notifyObservers("member");
     }
 }

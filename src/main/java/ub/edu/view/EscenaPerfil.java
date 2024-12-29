@@ -81,13 +81,18 @@ public class EscenaPerfil extends Escena implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("Actualitzant grups als que segueix l'usuari");
+        System.out.println("Actualitzant grups als que segueix l'usuari 1");
         if(o instanceof Persona){
-            System.out.println("Actualitzant grups als que segueix l'usuari");
+            System.out.println("Actualitzant grups als que segueix l'usuari 2");
             if(arg instanceof String) {
-                String grup = (String) arg;
-                System.out.println("Actualitzant grups als que segueix l'usuari");
-                popularTaulaFollowingGroups();
+                if (arg.equals("follower")) {
+                    System.out.println("Actualitzant grups als que segueix l'usuari 3");
+                    popularTaulaFollowingGroups();
+                } else if (arg.equals("member")) {
+                    System.out.println("Actualitzant grups als que segueix l'usuari 3");
+                    popularTaulaMemberGroups();
+                }
+
             }
         }
     }
