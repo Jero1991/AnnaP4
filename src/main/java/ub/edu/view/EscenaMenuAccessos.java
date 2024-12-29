@@ -12,9 +12,6 @@ public class EscenaMenuAccessos extends Escena{
 
     public void start() throws Exception{
         //TODO
-        this.codiAcces.setDisable(false);
-        this.ruleta.setDisable(false);
-        this.triviaJoc.setDisable(false);
 
     }
 
@@ -23,9 +20,6 @@ public class EscenaMenuAccessos extends Escena{
 
         controller.getSessionMemory().setMembershipStrategy("CodiAccesSrategy");
         refreshMembershipStrategy();
-        codiAcces.setDisable(false);
-        ruleta.setDisable(true);
-        triviaJoc.setDisable(true);
 
         Escena escena = EscenaFactory.INSTANCE.creaEscena("InvitacioCodi-view", "Invitacio" );
         EscenaInvitacioCodi escenaInvitacio = (EscenaInvitacioCodi) escena;
@@ -49,9 +43,6 @@ public class EscenaMenuAccessos extends Escena{
 
         controller.getSessionMemory().setMembershipStrategy("RuletaStrategy");
         refreshMembershipStrategy();
-        codiAcces.setDisable(true);
-        ruleta.setDisable(false);
-        triviaJoc.setDisable(true);
 
         Escena escena = EscenaFactory.INSTANCE.creaEscena("Ruleta-view", "Ruleta" );
         EscenaRuleta escenaRuleta = (EscenaRuleta) escena;
@@ -64,9 +55,6 @@ public class EscenaMenuAccessos extends Escena{
 
         controller.getSessionMemory().setMembershipStrategy("TriviaJocStrategy");
         refreshMembershipStrategy();
-        codiAcces.setDisable(true);
-        ruleta.setDisable(true);
-        triviaJoc.setDisable(false);
 
         Escena escena = EscenaFactory.INSTANCE.creaEscena("TriviaJoc-view", "Trivia Joc" );
         EscenaTriviaJoc escenaTrivia = (EscenaTriviaJoc) escena;
