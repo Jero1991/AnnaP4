@@ -64,4 +64,6 @@ public interface AbstractFactoryData {
     DAORelacioGrupInteresCategoriaPregunta createDAORelacioGrupInteresCategoriaPregunta();
     DAOPregunta createDAOPregunta();
     DAOResposta createDAOResposta();
+
+    DAORelacioPreguntaResposta createDAORelacioPreguntaResposta();
 }

@@ -2,6 +2,7 @@ package ub.edu.controller;
 
 
 import ub.edu.model.*;
+import ub.edu.model.cataleg.GrupInteres;
 import ub.edu.resources.ResourcesFacade;
 
 
@@ -225,5 +226,9 @@ public class Controller {
 
     public void setMembershipStrategy(String strategy) {
         modelFacade.setMembershipStrategy(strategy);
+    }
+
+    public GrupInteres findGrupInteres(String nomGrup) {
+        return modelFacade.getGrupInteres(nomGrup);
     }
 }

@@ -5,15 +5,19 @@ import ub.edu.model.quizz.Pregunta;
 
 public class TriviaStrategy implements MembershipStrategy{
     private Pregunta pregunta;
-    private String correctAnswer;
+    private String givenAnswer;
 
-    public TriviaStrategy(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
+    public void setGivenAnswer(String givenAnswer) {
+        this.givenAnswer = givenAnswer;
+    }
+
+    public void setPregunta(Pregunta pregunta) {
+        this.pregunta = pregunta;
     }
 
     @Override
     public boolean becomeMember(Persona follower, GrupInteres grup) {
-        if (pregunta.getRespostaCorrecta().equals(correctAnswer)){
+        if (pregunta.getRespostaCorrecta().equals(givenAnswer)){
             follower.addGrupInteresMembership(grup);
             follower.addPunts(200);
             return true;

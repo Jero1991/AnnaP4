@@ -2,6 +2,9 @@ package ub.edu.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import ub.edu.model.MembershipStrategy;
+import ub.edu.model.TriviaStrategy;
+import ub.edu.model.quizz.Pregunta;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -53,7 +56,12 @@ public class EscenaTriviaJoc extends Escena {
 
     private void loadRandomQuestion() {
         Random random = new Random();
-        HashMap<String, String> pregunta  = controller.sollicitarAcces ("QUIZZ", correuPersona, nomGrup);
+        Pregunta p =  controller.findGrupInteres(nomGrup).getPregunta();
+        HashMap<String, String> pregunta  = p.toHash();
+
+        MembershipStrategy ms = controller.findGrupInteres(nomGrup).getMembershipStrategy();
+        TriviaStrategy grupTrivia = (TriviaStrategy) ms;
+        grupTrivia.setPregunta(p);
 
         if (pregunta!=null) {
             // Load question and options

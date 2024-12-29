@@ -184,4 +184,9 @@ public class FactoryDB implements AbstractFactoryData {
         return new DAORespostaDB(this.connection);
     }
 
+    @Override
+    public DAORelacioPreguntaResposta createDAORelacioPreguntaResposta() {
+        return new DAORelacioPreguntaRespostaDB(this.connection);
+    }
+
 }

@@ -141,4 +141,9 @@ public class FactoryMOCK implements AbstractFactoryData {
         return null;
     }
 
+    @Override
+    public DAORelacioPreguntaResposta createDAORelacioPreguntaResposta() {
+        return null;
+    }
+
 }

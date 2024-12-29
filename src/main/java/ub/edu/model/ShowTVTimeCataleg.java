@@ -5,6 +5,7 @@ import ub.edu.model.cataleg.*;
 import ub.edu.model.exceptions.NotAvailableGroupException;
 import ub.edu.model.exceptions.NotAvailableMovieException;
 import ub.edu.model.exceptions.NotAvailableShowException;
+import ub.edu.model.quizz.Pregunta;
 
 import java.util.*;
 
@@ -13,6 +14,7 @@ public class ShowTVTimeCataleg {
     private List<Pelicula> llistaPelicules;
     private List<Tematica> llistaTematiques;
     private List<GrupInteres> llistaGrupsInteres;
+    private List<Pregunta> llistaPreguntes;
 
 
     public ShowTVTimeCataleg(){
@@ -21,15 +23,17 @@ public class ShowTVTimeCataleg {
         llistaPelicules = new ArrayList<Pelicula>();
         llistaTematiques = new ArrayList<Tematica>();
         llistaGrupsInteres = new ArrayList<GrupInteres>();
+        llistaPreguntes = new ArrayList<Pregunta>();
     }
     // Creador el ImUB
 
-    public ShowTVTimeCataleg(List<Serie> llistaSeries, List<Pelicula> llistaPelicules, List<Tematica> llistaTematiques, List<GrupInteres> llistaGrupsInteres) {
+    public ShowTVTimeCataleg(List<Serie> llistaSeries, List<Pelicula> llistaPelicules, List<Tematica> llistaTematiques, List<GrupInteres> llistaGrupsInteres, List<Pregunta> llistaPreguntes) {
 
         this.llistaSeries = llistaSeries;
         this.llistaPelicules = llistaPelicules;
         this.llistaTematiques = llistaTematiques;
         this.llistaGrupsInteres = llistaGrupsInteres;
+        this.llistaPreguntes = llistaPreguntes;
     }
 
     public void setLlistaSeries(List<Serie> llistaSeries) {
@@ -47,6 +51,10 @@ public class ShowTVTimeCataleg {
 
 
     public void setLlistaGrupsInteres(List<GrupInteres> llistaGrupsInteres) {this.llistaGrupsInteres = llistaGrupsInteres;}
+
+    public void setLlistaPreguntes(List<Pregunta> llistaPreguntes) {
+        this.llistaPreguntes = llistaPreguntes;
+    }
 
     public ContingutDigital findContingutDigital(String nomContingut){
         List<ContingutDigital> combinedList = new ArrayList<>(llistaPelicules);
@@ -368,5 +376,14 @@ public class ShowTVTimeCataleg {
         for (GrupInteres g : llistaGrupsInteres) {
             g.setMembershipStrategy(strategy);
         }
+    }
+
+    public Pregunta findPregunta(String string) {
+        for (Pregunta p : llistaPreguntes) {
+            if (p.getQuestion().equals(string)) {
+                return p;
+            }
+        }
+        return null;
     }
 }

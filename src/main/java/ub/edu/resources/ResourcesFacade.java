@@ -11,6 +11,7 @@ import ub.edu.model.exceptions.NotAvailableGroupException;
 import ub.edu.model.exceptions.PersonaExistsException;
 import ub.edu.model.exceptions.WrongPasswordException;
 import ub.edu.model.quizz.Pregunta;
+import ub.edu.model.quizz.Resposta;
 import ub.edu.resources.service.AbstractFactoryData;
 import ub.edu.resources.service.DataService;
 import ub.edu.resources.service.FactoryDB;
@@ -42,6 +43,9 @@ public class ResourcesFacade {
             loadPelicules();
             loadSeries();
             loadTematiques();
+            loadPreguntes();
+            relacionarPreguntesRespostes();
+
             System.out.println("Carregades Series i Pelis i tematiques");
             loadGrupsInteres();
             System.out.println("Carregades Grups d'interes");
@@ -52,11 +56,33 @@ public class ResourcesFacade {
             relacionarGrupsInteresTemes();   // Suposem que les tematiques i els grups d'interes ja estan creades
             initPreguntesGrupInteres();      // Suposem els grups ja creats: metode que cal completar
                                             // TODO relacionar preguntes amb grups al model
+            relacionarGrupsPreguntes();      // Suposem les preguntes ja estan creades
             System.out.println("Carregat  tot el cataleg: pel·lícules, sèries, temàtiques, grups i preguntes");
         } catch (Exception e) {
             System.out.println("Exception: --> " + e.getMessage());
         }
     }
+
+    private void relacionarPreguntesRespostes() {
+        try {
+            System.out.println("Intentando relacionar preguntas con respuestas");
+            List<Parell<String, List<Parell<String, Boolean>>>> relacionsPR = dataService.getAllRelacionsPreguntaResposta();
+
+            for (Parell p : relacionsPR) {
+                System.out.println("Estamossss cargando la pregunta "+p.getElement1().toString());
+                Pregunta pregunta = showTVTimeCataleg.findPregunta(p.getElement1().toString());
+                List<Parell<String, Boolean>> respostes = (List<Parell<String, Boolean>>) p.getElement2();
+                for (Parell<String, Boolean> r : respostes) {
+                    System.out.println("relacionando la pregunta "+pregunta.getQuestion()+" con la respuesta "+r.getElement1());
+                    Resposta resposta = new Resposta(r.getElement1(), r.getElement2());
+                    pregunta.addResposta(resposta);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Exception: --> ERROR en crear relacions Preguntes-Respostes");
+        }
+    }
+
     public void populateShowTVTimePersones() {
         try {
             initCarteraPersones();
@@ -131,6 +157,20 @@ public class ResourcesFacade {
             return true;
         }else return false;
     }
+
+    public boolean loadPreguntes() {
+        List<Pregunta> l = null;
+        try {
+            l = dataService.getAllPreguntes();
+        } catch (Exception e) {
+            System.out.println("Exception: --> ERROR en carregar preguntes");
+            return false;
+        }
+        if (l != null) {
+            showTVTimeCataleg.setLlistaPreguntes(l);
+            return true;
+        }else return false;
+    }
     private void relacionarPeliculesTemes() {
         try {
             List<Parell<String, String>> relacionsPT = dataService.getAllRelacionsPeliculesTematiques();
@@ -162,6 +202,25 @@ public class ResourcesFacade {
             Tematica tema = showTVTimeCataleg.findTematica(p.getElement1().toString());
             GrupInteres grupInteres = showTVTimeCataleg.findGrupInteres(p.getElement2().toString());
             grupInteres.addTematica(tema);
+        }
+    }
+
+    private void relacionarGrupsPreguntes() {
+        try {
+            List<Trio<String, String, String>> relacionsST = dataService.getAllRelacionsGrupInteresCategoriaPregunta();
+
+            for (Trio p : relacionsST) {
+                System.out.println("Estamos cargando la pregunta "+p.toString());
+                System.out.println(p.getElement1());
+                System.out.println(p.getElement2());
+                System.out.println(p.getElement3());
+                GrupInteres grupInteres = showTVTimeCataleg.findGrupInteres(p.getElement1().toString());
+                Pregunta pregunta = showTVTimeCataleg.findPregunta(p.getElement3().toString());
+                grupInteres.addPregunta(pregunta);
+            }
+        } catch (Exception e) {
+            System.out.println("Exception: --> ERROR en crear relacions GrupsInteres-Persones");
+            System.out.println(e.getMessage());
         }
     }
 

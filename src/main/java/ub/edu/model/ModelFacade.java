@@ -320,7 +320,6 @@ public class ModelFacade {
 
         Persona persona = showTVTimePersones.findPersonaCartera(correuPersona);
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
-        Pregunta pregunta = showTVTimeCataleg.findGrupInteres(nomGrup).getPregunta();
         // TODO Pràctica 4: comprova accés al grup segons el tipus d'acces
         // TODO Cal retornar al String si es "MEMBRE" o no
 
@@ -334,7 +333,17 @@ public class ModelFacade {
             }
         }
         if (tipusAcces.equals("QUIZZ")) {
-            pregunta
+            MembershipStrategy ms = grup.getMembershipStrategy();
+            TriviaStrategy grupTrivia = (TriviaStrategy) ms;
+            grupTrivia.setGivenAnswer(dadaAcces);
+
+            if(grup.checkMembership(persona)){
+                return "MEMBER";
+            } else {
+                return "NO MEMBER";
+            }
+        }
+        if (tipusAcces.equals("RULETA")) {
             if(grup.checkMembership(persona)){
                 return "MEMBER";
             } else {
@@ -398,5 +407,14 @@ public class ModelFacade {
 
     public void setMembershipStrategy(String strategy) {
         showTVTimeCataleg.setMembershipStrategy(strategy);
+    }
+
+    public GrupInteres getGrupInteres(String nomGrup) {
+        try{
+            return showTVTimeCataleg.findGrupInteres(nomGrup);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

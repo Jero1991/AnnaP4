@@ -51,6 +51,7 @@ public class DataService {
 
     private DAORelacioFollowerGrupInteres daoRelacioGrupInteresFollower;
     private DAORelacioMembreGrupInteres daoRelacioGrupInteresMembre;
+    private DAORelacioPreguntaResposta daoRelacioPreguntaResposta;
 
     // Grup Interes - Preguntes
     private DAOPregunta daoPregunta;
@@ -69,6 +70,9 @@ public class DataService {
         daoGrupInteres = factory.createDAOGrupInteres();
 
         // Relacions
+        //dao de la relació entre les preguntes i les respostes
+        daoRelacioPreguntaResposta = factory.createDAORelacioPreguntaResposta();
+
         daoRelacioTematicaPelicula = factory.createDAORelacioTematicaPelicula();
         daoRelacioTematicaSerie = factory.createDAORelacioTematicaSerie();
 
@@ -333,4 +337,19 @@ public class DataService {
     }
 
 
+    public List<Pregunta> getAllPreguntes() {
+        try {
+            return daoPregunta.getAll();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public List<Parell<String, List<Parell<String, Boolean>>>> getAllRelacionsPreguntaResposta() {
+        try {
+            return daoRelacioPreguntaResposta.getAll();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

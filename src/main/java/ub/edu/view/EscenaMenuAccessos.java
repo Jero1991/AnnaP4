@@ -53,7 +53,7 @@ public class EscenaMenuAccessos extends Escena{
 
     public void onTriviaJoc() throws Exception{
 
-        controller.getSessionMemory().setMembershipStrategy("TriviaJocStrategy");
+        controller.getSessionMemory().setMembershipStrategy("TriviaStrategy");
         refreshMembershipStrategy();
 
         Escena escena = EscenaFactory.INSTANCE.creaEscena("TriviaJoc-view", "Trivia Joc" );

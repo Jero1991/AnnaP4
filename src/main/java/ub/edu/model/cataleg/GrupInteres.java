@@ -133,13 +133,23 @@ public class GrupInteres {
         }*/
     }
 
+    public MembershipStrategy getMembershipStrategy() {
+        return membershipStrategy;
+    }
+
     public boolean checkMembership(Persona persona) {
         return membershipStrategy.becomeMember(persona, this);
     }
 
     public Pregunta getPregunta() {
+        System.out.println("tamany preguntes: "+preguntes.size());
+        System.out.println("pregunta: "+preguntes.get(0));
         Random random = new Random();
         int index = random.nextInt(preguntes.size());
         return preguntes.get(index);
+    }
+
+    public void addPregunta(Pregunta pregunta) {
+        preguntes.add(pregunta);
     }
 }
