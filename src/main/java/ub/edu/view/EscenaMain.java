@@ -1,5 +1,6 @@
 package ub.edu.view;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -85,6 +86,8 @@ public class EscenaMain extends Escena implements Observer {
         }
     }
 
+
+    //????revisar
     public void onBtnLogOut() {
         //TODO OPT Pràctica 4
         // Limpiar la sesión del usuario
@@ -92,6 +95,7 @@ public class EscenaMain extends Escena implements Observer {
 
         // Redirigir a la pantalla de inicio de sesión
         try {
+            stage.close();
             Escena escena = EscenaFactory.INSTANCE.creaEscena("login-view", "Iniciar Sesión");
             EscenaLogin escenaLogin = ((EscenaLogin) escena);
             escenaLogin.setController(controller);

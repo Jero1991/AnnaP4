@@ -1,11 +1,14 @@
 package ub.edu.model.cataleg;
 
+import java.util.Observable;
+import ub.edu.view.EscenaMain;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WhatNext {
+public class WhatNext extends Observable {
 
     Map<ContingutDigital, String> whatNext;
 
@@ -13,8 +16,8 @@ public class WhatNext {
         whatNext = new HashMap<>();
     }
 
-    public void afegirWhatNextContent(int year, int month, int day, ContingutDigital c) {
-        LocalDateTime date = LocalDateTime.of(year, month, day, 0, 0);
+    public void afegirWhatNextContent(ContingutDigital c) {
+        LocalDateTime date = LocalDateTime.now();
         //afegir a la whatnext només si no sha acabat de veure el contingut
         if (!c.isFinished()) {
             whatNext.put(c, date.toString());
@@ -29,4 +32,5 @@ public class WhatNext {
     public ArrayList<ContingutDigital> getContingutDigital() {
         return new ArrayList<>(whatNext.keySet());
     }
+
 }

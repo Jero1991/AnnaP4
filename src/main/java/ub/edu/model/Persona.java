@@ -27,6 +27,9 @@ public class Persona {
         this.nom = nom;
         this.watchedHistory = new WatchedHistory();
         this.whatNext = new WhatNext();
+        this.grupsInteres = new ArrayList<>();
+        this.grupsInteresFollowed = new ArrayList<>();
+        this.grupsInteresMembership = new ArrayList<>();
     }
 
     public Persona(String correu, String nom, String cognoms, String dni, String password) {
@@ -37,6 +40,9 @@ public class Persona {
         this.pwd = password;
         this.watchedHistory = new WatchedHistory();
         this.whatNext = new WhatNext();
+        this.grupsInteres = new ArrayList<>();
+        this.grupsInteresFollowed = new ArrayList<>();
+        this.grupsInteresMembership = new ArrayList<>();
     }
 
     public String getPwd() {
@@ -69,5 +75,9 @@ public class Persona {
 
     public List<GrupInteres> getGrupsInteresFollowed() {
         return grupsInteresFollowed;
+    }
+
+    public List<GrupInteres> getGrupsInteresMembership() {
+        return grupsInteresMembership;
     }
 }

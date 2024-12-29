@@ -1,6 +1,8 @@
 package ub.edu.model.cataleg;
 
 
+import ub.edu.model.Persona;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +13,11 @@ public class GrupInteres {
 
     private List<Tematica> tematiques;
     private List<ContingutDigital> contingutDigitals;
+
+    //llista followers
+    private List<Persona> followers;
+    //llista membres
+    private List<Persona> membres;
 
     private String nomGrupInteres;
     private String descripcioGrupInteres;
@@ -24,6 +31,8 @@ public class GrupInteres {
         contingutDigitals = new ArrayList<ContingutDigital>();
         Random random = new Random();
         codiAcces = nomGrupInteres + "2024";
+        followers = new ArrayList<>();
+        membres = new ArrayList<>();
     }
 
     public String getNom() {
@@ -91,4 +100,13 @@ public class GrupInteres {
         return codiAcces;
     }
 
+    public void afegirFollower(Persona persona) {
+        followers.add(persona);
+    }
+
+    public void afegirMembre(Persona persona, int punts) {
+        membres.add(persona);
+        persona.addGrupInteresMembership(this);
+        persona.addPunts(punts);
+    }
 }

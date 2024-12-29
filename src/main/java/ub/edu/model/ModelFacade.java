@@ -190,10 +190,12 @@ public class ModelFacade {
         // TODO: Pràctica 4: Cal retornar els continguts de la WatchNext List
         try{
             Persona persona = showTVTimePersones.findPersonaCartera(correu);
+
             for (ContingutDigital c : persona.getWhatNext().getContingutDigital()) {
                 HashMap<Object, Object> atributContingut = new HashMap<>();
                 atributContingut.put("nom", c.getNom());
                 WatchNext.add(atributContingut);
+                persona.getWhatNext().afegirWhatNextContent(showTVTimeCataleg.findContingut(c.getNom()));
             }
 
             System.out.println("Model Facade: getWatchNext -> tipusContingut ");
@@ -252,8 +254,22 @@ public class ModelFacade {
     public List<HashMap<Object, Object>> getMemberGrupsPerPersona(String correuPersona) {
         // TODO Pràctica 4: Cal  obtenir els grups dels què és membre la persona amb correu "correuPersona"
         // Per a cada grup cal omplir la hashMap que espera la vista
-
         List<HashMap<Object, Object>> grupsDisponibles = new ArrayList<>();
+        try {
+            Persona persona = showTVTimePersones.findPersonaCartera(correuPersona);
+            List<GrupInteres> grupsMembre = persona.getGrupsInteresMembership();
+            for (GrupInteres g : grupsMembre) {
+                HashMap<Object, Object> hashMap = new HashMap<>();
+                hashMap.put("nom", g.getNom());
+                hashMap.put("descripcio", g.getDescripcioGrupInteres());
+                grupsDisponibles.add(hashMap);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return grupsDisponibles;
+
+
         // TODO: Cal que omplis list amb llista de grups dels què és membre la persona
         // List<GrupInteres> list;
         //for (GrupInteres g : list) {
@@ -264,7 +280,6 @@ public class ModelFacade {
         //}
 
         // return grupsDisponibles;
-        return null;
     }
 
     public void addFollowerGrup(String nomUsuari, String nomGrup) throws Exception {
@@ -272,6 +287,12 @@ public class ModelFacade {
         Persona persona = showTVTimePersones.findPersonaCartera(nomUsuari);
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
         // TODO Pràctica 4: Cal afegir l'usuari "persona" com a follower del grup "grup"
+        if (persona != null && grup != null) {
+            grup.afegirFollower(persona);
+            System.out.println("Model Facade: addFollowerGrup -> nomUsuari: " + nomUsuari + " nomGrup: " + nomGrup);
+        }else{
+            throw new Exception(String.valueOf(MessagesCAT.FollowingException));
+        }
 
     }
 
@@ -280,6 +301,12 @@ public class ModelFacade {
         Persona persona = showTVTimePersones.findPersonaCartera(nomUsuari);
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
         // TODO Pràctica 4: Cal afegir l'usuari "persona" com a membre del grup "grup"
+        if (persona != null && grup != null) {
+            grup.afegirMembre(persona, punts);
+            System.out.println("Model Facade: addMemberGrup -> nomUsuari: " + nomUsuari + " nomGrup: " + nomGrup);
+        }else{
+            throw new Exception(String.valueOf(MessagesCAT.MemberExistsException));
+        }
     }
 
     public HashMap<String, String> sollicitarAcces(String tipusAcces, String correuPersona, String nomGrup) throws Exception{
