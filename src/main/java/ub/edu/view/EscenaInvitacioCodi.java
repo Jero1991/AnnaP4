@@ -29,6 +29,9 @@ public class EscenaInvitacioCodi extends Escena {
         accederButton.setDisable(true);
 
         // Add listener to the invitation code TextField to check for validity
+        invitationCodeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            checkInvitationCode();
+        });
 
     }
 

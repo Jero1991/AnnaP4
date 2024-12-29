@@ -2,7 +2,7 @@ package ub.edu.view;
 
 import javafx.scene.control.Button;
 
-public class EscenaMenuAccessos  extends Escena{
+public class EscenaMenuAccessos extends Escena{
 
 
     private Button codiAcces;
@@ -12,6 +12,10 @@ public class EscenaMenuAccessos  extends Escena{
 
     public void start() throws Exception{
         //TODO
+        this.codiAcces.setDisable(false);
+        this.ruleta.setDisable(false);
+        this.triviaJoc.setDisable(false);
+
     }
 
 
@@ -42,6 +46,13 @@ public class EscenaMenuAccessos  extends Escena{
     }
 
     public void onRuleta() throws Exception{
+
+        controller.getSessionMemory().setMembershipStrategy("RuletaStrategy");
+        refreshMembershipStrategy();
+        codiAcces.setDisable(true);
+        ruleta.setDisable(false);
+        triviaJoc.setDisable(true);
+
         Escena escena = EscenaFactory.INSTANCE.creaEscena("Ruleta-view", "Ruleta" );
         EscenaRuleta escenaRuleta = (EscenaRuleta) escena;
         escenaRuleta.setController(controller);
@@ -50,6 +61,13 @@ public class EscenaMenuAccessos  extends Escena{
     }
 
     public void onTriviaJoc() throws Exception{
+
+        controller.getSessionMemory().setMembershipStrategy("TriviaJocStrategy");
+        refreshMembershipStrategy();
+        codiAcces.setDisable(true);
+        ruleta.setDisable(true);
+        triviaJoc.setDisable(false);
+
         Escena escena = EscenaFactory.INSTANCE.creaEscena("TriviaJoc-view", "Trivia Joc" );
         EscenaTriviaJoc escenaTrivia = (EscenaTriviaJoc) escena;
         escenaTrivia.setController(controller);

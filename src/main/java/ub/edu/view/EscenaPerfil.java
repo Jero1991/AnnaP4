@@ -132,15 +132,6 @@ public class EscenaPerfil extends Escena implements Observer {
             controller.getSessionMemory().setNomGrup(nomGrup);
             controller.addFollower2Grup(controller.getSessionMemory().getCorreuPersona(), nomGrup);
 
-            /*
-            try {
-                Escena escena = EscenaFactory.INSTANCE.creaEscena("MenuAccessos-view", "Selecciona una opció");
-                EscenaMenuAccessos escenaM = ((EscenaMenuAccessos)escena);
-                escenaM.setController(controller);
-                escenaM.start();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }*/
             // TODO Pràctica 4: cal també controlar les situacions possibles d'error i
             // TODO mostrar-les per la finestra d'alertes
         }
