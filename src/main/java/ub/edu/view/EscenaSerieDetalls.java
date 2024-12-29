@@ -1,6 +1,7 @@
 package ub.edu.view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -81,7 +82,21 @@ public class EscenaSerieDetalls extends Escena{
     }
 
 
-    public void onBtnWatchedHistoryAddClick() {
+    public void onBtnWatchedHistoryAddClick() throws Exception {
         //TODO
+        boolean result = controller.addToWatchedHistory(controller.getSessionMemory().getNomSerie(), controller.getSessionMemory().getCorreuPersona());
+        if (result){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Èxit");
+            alert.setHeaderText("Èxit");
+            alert.setContentText("Pelicula afegida a la llista de vistos");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Error al afegir la pelicula a la llista de vistos");
+            alert.showAndWait();
+        }
     }
 }
