@@ -26,7 +26,7 @@ public class EscenaInvitacioCodi extends Escena {
         this.correuPersona = controller.getSessionMemory().getCorreuPersona();
         this.nomGrup = controller.getSessionMemory().getNomGrup();
         // Initially disable the "Accedir" button
-        accederButton.setDisable(true);
+        //accederButton.setDisable(true);
 
         // Add listener to the invitation code TextField to check for validity
         invitationCodeField.textProperty().addListener((observable, oldValue, newValue) -> {

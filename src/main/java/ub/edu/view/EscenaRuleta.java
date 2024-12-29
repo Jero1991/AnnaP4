@@ -26,9 +26,13 @@ public class EscenaRuleta extends Escena {
 
     public void start() throws Exception{
         //TODO
-        accedirButton.setDisable(false);
+        //accedirButton.setDisable(false);
         this.correuPersona = controller.getSessionMemory().getCorreuPersona();
         this.nomGrup = controller.getSessionMemory().getNomGrup();
+        //spinButton.setDisable(false);
+        //accedirButton.setDisable(true);
+
+
     }
     // Aixo s'encarrega de l'animació de la ruleta
     @FXML

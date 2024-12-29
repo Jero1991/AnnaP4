@@ -61,8 +61,4 @@ public class EscenaMenuAccessos extends Escena{
         escenaTrivia.setController(controller);
         escenaTrivia.start();
     }
-
-
-
-
 }

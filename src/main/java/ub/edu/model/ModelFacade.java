@@ -321,6 +321,7 @@ public class ModelFacade {
         // TODO Pràctica 4: comprova accés al grup segons el tipus d'acces
         // TODO Cal retornar al String si es "MEMBRE" o no
 
+<<<<<<< Updated upstream
         if (tipusAcces.equals("CODI")) {
             persona.addCodiAcces(dadaAcces);
             System.out.println(grup.getCodiAcces());
@@ -331,6 +332,8 @@ public class ModelFacade {
             }
         }
 
+=======
+>>>>>>> Stashed changes
         return null;
     }
     // TODO OPT Pràctica 4: Fer els mètodes corresponents a treure un usuari com a Follower
