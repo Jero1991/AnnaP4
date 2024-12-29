@@ -135,4 +135,8 @@ public class SessionMemory {
         tipusStrategy = null;
         tipusObraTop = null;
     }
+
+    public void setMembershipStrategy(String tipusStrategy) {
+        this.tipusStrategy = tipusStrategy;
+    }
 }

@@ -14,12 +14,16 @@ public class Persona {
     private String nompropi;
     private String cognoms;
     private String dni;
+    private int punts;
+
 
     private WatchedHistory watchedHistory;
     private WhatNext whatNext;
     private ArrayList<GrupInteres> grupsInteres;
     private ArrayList<GrupInteres> grupsInteresFollowed;
     private ArrayList<GrupInteres> grupsInteresMembership;
+    private ArrayList<String> codisAcces;
+
 
 
     public Persona(String nom, String pwd) {
@@ -30,6 +34,7 @@ public class Persona {
         this.grupsInteres = new ArrayList<>();
         this.grupsInteresFollowed = new ArrayList<>();
         this.grupsInteresMembership = new ArrayList<>();
+        this.codisAcces = new ArrayList<>();
     }
 
     public Persona(String correu, String nom, String cognoms, String dni, String password) {
@@ -43,6 +48,7 @@ public class Persona {
         this.grupsInteres = new ArrayList<>();
         this.grupsInteresFollowed = new ArrayList<>();
         this.grupsInteresMembership = new ArrayList<>();
+        this.codisAcces = new ArrayList<>();
     }
 
     public String getPwd() {
@@ -79,5 +85,33 @@ public class Persona {
 
     public List<GrupInteres> getGrupsInteresMembership() {
         return grupsInteresMembership;
+    }
+
+    public void addGrupInteresMembership(GrupInteres grupInteres) {
+        grupsInteresMembership.add(grupInteres);
+    }
+
+    public void addPunts(int punts) {
+        this.punts += punts;
+    }
+
+    public void addCodiAcces(String codiAcces) {
+        codisAcces.add(codiAcces);
+    }
+
+    public List<String> getCodisAcces() {
+        return codisAcces;
+    }
+
+    public boolean removeCodiAcces(String codiAcces){
+        return codisAcces.remove(codiAcces);
+    }
+
+    public boolean hasCodiAcces(String codiAcces){
+        return codisAcces.contains(codiAcces);
+    }
+
+    public void removeGrupInteresFollowed(GrupInteres grup) {
+        grupsInteresFollowed.remove(grup);
     }
 }

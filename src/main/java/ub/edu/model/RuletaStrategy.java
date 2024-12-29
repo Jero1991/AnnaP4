@@ -9,7 +9,7 @@ public class RuletaStrategy implements MembershipStrategy {
     private int numRuleta;
 
     @Override
-    public boolean becomeMember(PerfilPersona follower, GrupInteres grup) {
+    public boolean becomeMember(Persona follower, GrupInteres grup) {
         //3 opcions: continuar sent Follower, esdevenir membre o no ser res del grup
 
         //Generem un número aleatori entre 0 i 2

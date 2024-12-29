@@ -26,7 +26,7 @@ public class EscenaRuleta extends Escena {
 
     public void start() throws Exception{
         //TODO
-        accedirButton.setDisable(true);
+        accedirButton.setDisable(false);
         this.correuPersona = controller.getSessionMemory().getCorreuPersona();
         this.nomGrup = controller.getSessionMemory().getNomGrup();
     }
@@ -62,6 +62,13 @@ public class EscenaRuleta extends Escena {
 
     public void onAccedirButton() {
         // TODO Pràctica 4: Codi d'afegir com a membre de grup
+        handleSpin();
         controller.addMember2Grup(correuPersona, nomGrup, 100);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Èxit");
+        alert.setHeaderText("Èxit");
+        alert.setContentText("Usuari afegit com a membre del grup");
+        alert.showAndWait();
+
     }
 }

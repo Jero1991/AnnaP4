@@ -12,7 +12,7 @@ public class TriviaStrategy implements MembershipStrategy{
     }
 
     @Override
-    public boolean becomeMember(PerfilPersona follower, GrupInteres grup) {
+    public boolean becomeMember(Persona follower, GrupInteres grup) {
         if (pregunta.getRespostaCorrecta().equals(correctAnswer)){
             follower.addGrupInteresMembership(grup);
             follower.addPunts(200);

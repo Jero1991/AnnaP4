@@ -16,10 +16,29 @@ public class EscenaMenuAccessos  extends Escena{
 
 
     public void onCodiAcces() throws Exception{
+
+        controller.getSessionMemory().setMembershipStrategy("CodiAccesSrategy");
+        refreshMembershipStrategy();
+        codiAcces.setDisable(false);
+        ruleta.setDisable(true);
+        triviaJoc.setDisable(true);
+
         Escena escena = EscenaFactory.INSTANCE.creaEscena("InvitacioCodi-view", "Invitacio" );
         EscenaInvitacioCodi escenaInvitacio = (EscenaInvitacioCodi) escena;
         escenaInvitacio.setController(controller);
         escenaInvitacio.start();
+    }
+
+    private void refreshMembershipStrategy() {
+        String tipusStrategy = controller.getSessionMemory().getTipusStrategy();
+        System.out.println("Tipus Strategy: " + tipusStrategy);
+        try {
+            controller.setMembershipStrategy(tipusStrategy);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void onRuleta() throws Exception{

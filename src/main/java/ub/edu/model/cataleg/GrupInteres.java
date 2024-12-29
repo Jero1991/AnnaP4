@@ -36,6 +36,8 @@ public class GrupInteres {
         codiAcces = nomGrupInteres + "2024";
         followers = new ArrayList<>();
         membres = new ArrayList<>();
+
+
     }
 
     public String getNom() {
@@ -110,16 +112,24 @@ public class GrupInteres {
     public void afegirMembre(Persona persona, int punts) {
         membres.add(persona);
 
-        //persona.addGrupInteresMembership(this);
-        //persona.addPunts(punts);
+        persona.addGrupInteresMembership(this);
+        persona.addPunts(punts);
     }
 
     public void setMembershipStrategy(String strategy) {
+<<<<<<< Updated upstream
         try {
             String name = MembershipStrategy.class.getName();
             membershipStrategy = (MembershipStrategy) Class.forName(name + "." + strategy).newInstance();
         } catch (Exception e) {
             System.out.println("Strategy not found");
+=======
+        try{
+            String name = MembershipStrategy.class.getName();
+            membershipStrategy = (MembershipStrategy) Class.forName(name + "." + strategy).newInstance();
+        } catch (Exception e) {
+            System.out.println("Error al crear la Starategy");
+>>>>>>> Stashed changes
         }
     }
 }

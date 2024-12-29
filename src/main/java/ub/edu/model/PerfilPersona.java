@@ -41,7 +41,7 @@ public class PerfilPersona {
     //esdevenir membre d'un grup d'interes
     public boolean becomeMember(GrupInteres grup) {
         if (membershipStrategy != null) {
-            return membershipStrategy.becomeMember(this, grup);
+            //return membershipStrategy.becomeMember(, grup);
         }
         return false;
     }
@@ -126,9 +126,6 @@ public class PerfilPersona {
         grupsInteresFollowed.remove(grup);
     }
 
-   /* public void addToWatchedHistory(ContingutDigital cd, LocalDateTime data) {
-        watchedHistory.addContingutDigital(cd, data);
-    }*/
 
     public int tirarDau(int i) {
         //tirar un dau que retorna un valor entre 1 i 4
