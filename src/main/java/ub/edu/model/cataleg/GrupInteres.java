@@ -106,7 +106,8 @@ public class GrupInteres {
 
     public void afegirMembre(Persona persona, int punts) {
         membres.add(persona);
-        persona.addGrupInteresMembership(this);
-        persona.addPunts(punts);
+
+        //persona.addGrupInteresMembership(this);
+        //persona.addPunts(punts);
     }
 }

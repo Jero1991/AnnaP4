@@ -16,6 +16,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import ub.edu.model.cataleg.WatchedHistory;
+import ub.edu.model.cataleg.WhatNext;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -36,6 +37,8 @@ public class EscenaMain extends Escena implements Observer {
     public TableColumn valueColumn;
     public TableView tableWatchedList;
     public TableColumn nomColumnWatchedList;
+    public TableView tableWhatNext;
+    public TableColumn nomColumnWhatNext;
     public Text textPrincipal;
     public ImageView image_main;
     public Button button_punts_main;
@@ -86,8 +89,6 @@ public class EscenaMain extends Escena implements Observer {
         }
     }
 
-
-    //????revisar
     public void onBtnLogOut() {
         //TODO OPT Pràctica 4
         // Limpiar la sesión del usuario
@@ -117,6 +118,33 @@ public class EscenaMain extends Escena implements Observer {
                     popularWatchedList();
                 }
             }
+        }
+        else if(o instanceof WhatNext) {
+            System.out.println("Actualitzant la WhatNext");
+            if (arg instanceof String) {
+                String s = (String) arg;
+                if (s.equals("whatNext")) {
+                    popularWhatNext();
+                }
+            }
+        }
+    }
+
+    private void popularWhatNext() {
+        nomColumnWhatNext.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
+
+        List<HashMap<Object, Object>> listaObres = controller.getWatchNext(this.controller.getSessionMemory().getCorreuPersona());
+
+        // Borrar todos los elementos existentes en la TableView
+        tableWhatNext.getItems().clear();
+
+        // Agregar los elementos de la lista de nombres a la TableView
+        for (HashMap<Object, Object> listaObre : listaObres) {
+            // Obtener el nombre (u otro valor) de la obra de la lista de HashMaps
+            String nom = (String) listaObre.get("nom");
+
+            // Agregar la cadena directamente a la TableView
+            tableWhatNext.getItems().add(new DataWatched(nom));
         }
     }
 
