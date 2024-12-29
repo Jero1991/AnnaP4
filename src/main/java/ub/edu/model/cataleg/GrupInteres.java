@@ -115,8 +115,11 @@ public class GrupInteres {
     }
 
     public void setMembershipStrategy(String strategy) {
-
-        String name = MembershipStrategy.class.getName();
-        membershipStrategy = (MembershipStrategy) Class.forName(name + "." + strategy).newInstance();
+        try {
+            String name = MembershipStrategy.class.getName();
+            membershipStrategy = (MembershipStrategy) Class.forName(name + "." + strategy).newInstance();
+        } catch (Exception e) {
+            System.out.println("Strategy not found");
+        }
     }
 }

@@ -26,32 +26,11 @@ public class WatchedHistory extends Observable {
         }
     }
 
-    public void afegirWatchedContent(ContingutDigital c, int numTemporada, String date) {
-
-        //??? no se añade el numero de la temporada
-        if (watchedHistory.containsKey(c)){
-            System.out.println("Aquest contingut ja està a la WatchedHistory");
-        } else {
-            watchedHistory.put(c, date);
-            System.out.println(c.getNom() + " afegit a la WatchedHistory");
-            setChanged();
-            notifyObservers("watchedHistory");
-        }
-    }
-
-    public void afegirWatchedContent(ContingutDigital c, int numTemporada, int numEpisodi, String date) {
-        if (watchedHistory.containsKey(c)) {
-            System.out.println("Aquest contingut ja està a la WatchedHistory");
-        } else {
-            watchedHistory.put(c, date);
-            System.out.println(c.getNom() + " afegit a la WatchedHistory");
-            setChanged();
-            notifyObservers("watchedHistory");
-        }
-    }
-
     public ArrayList<ContingutDigital> getContingutDigital() {
         return new ArrayList<>(watchedHistory.keySet());
     }
 
+    public Map<ContingutDigital, String> getWatchedHistory() {
+        return watchedHistory;
+    }
 }

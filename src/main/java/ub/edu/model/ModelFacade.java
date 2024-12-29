@@ -144,7 +144,7 @@ public class ModelFacade {
 
         try{
             Persona persona = showTVTimePersones.findPersonaCartera(correu);
-            persona.getWatchedHistory().afegirWatchedContent(showTVTimeCataleg.findContingut(nomContingut), numTemporada, data);
+            persona.getWatchedHistory().afegirWatchedContent(showTVTimeCataleg.findTemporada(nomContingut, numTemporada), data);
             System.out.println("Model Facade: addTemporadaToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
         } catch (Exception e){
             System.out.println(e.getMessage());
@@ -158,7 +158,7 @@ public class ModelFacade {
 
         try{
             Persona persona = showTVTimePersones.findPersonaCartera(correu);
-            persona.getWatchedHistory().afegirWatchedContent(showTVTimeCataleg.findContingut(nomContingut), numTemporada, numEpisodi, data);
+            persona.getWatchedHistory().afegirWatchedContent(showTVTimeCataleg.findEpisodi(nomContingut, numTemporada, numEpisodi), data);
             System.out.println("Model Facade: addEpisodiToWatchedHistoryList -> nomContingut: " + nomContingut + " correu: " + correu);
         } catch (Exception e) {
             System.out.println(e.getMessage());

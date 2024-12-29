@@ -6,12 +6,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Temporada {
+public class Temporada extends ContingutDigital {
     private int numTemporada;
     private String nomSerie;
     private List<Episodi> llistaEpisodis;
 
     public Temporada(String nomSerie, int i) {
+        super(nomSerie + " - Temporada " + i);
         this.nomSerie = nomSerie;
         this.numTemporada = i;
         llistaEpisodis = new ArrayList<Episodi>();

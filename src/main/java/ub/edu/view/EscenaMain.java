@@ -37,8 +37,6 @@ public class EscenaMain extends Escena implements Observer {
     public TableColumn valueColumn;
     public TableView tableWatchedList;
     public TableColumn nomColumnWatchedList;
-    public TableView tableWhatNext;
-    public TableColumn nomColumnWhatNext;
     public Text textPrincipal;
     public ImageView image_main;
     public Button button_punts_main;
@@ -131,13 +129,12 @@ public class EscenaMain extends Escena implements Observer {
     }
 
     private void popularWhatNext() {
-
-        nomColumnWhatNext.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
+        nomColumn.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
 
         List<HashMap<Object, Object>> listaObres = controller.getWatchNext(this.controller.getSessionMemory().getCorreuPersona());
 
         // Borrar todos los elementos existentes en la TableView
-        tableWhatNext.getItems().clear();
+        tableTop10Valorades.getItems().clear();
 
         // Agregar los elementos de la lista de nombres a la TableView
         for (HashMap<Object, Object> listaObre : listaObres) {
@@ -145,7 +142,7 @@ public class EscenaMain extends Escena implements Observer {
             String nom = (String) listaObre.get("nom");
 
             // Agregar la cadena directamente a la TableView
-            tableWhatNext.getItems().add(new DataWatched(nom));
+            tableTop10Valorades.getItems().add(new DataWatched(nom));
         }
     }
 

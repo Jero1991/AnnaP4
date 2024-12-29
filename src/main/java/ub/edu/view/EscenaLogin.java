@@ -80,8 +80,8 @@ public class EscenaLogin extends Escena {
 
             Persona client = controller.findClientCartera(correuPersona);
             client.getWatchedHistory().addObserver(escenaMain);
+            client.getWatchedHistory().addObserver(client.getWhatNext());
             client.getWhatNext().addObserver(escenaMain);
-
 
             escenaMain.start();
             stage.close();

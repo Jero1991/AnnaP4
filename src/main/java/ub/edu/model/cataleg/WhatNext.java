@@ -1,14 +1,12 @@
 package ub.edu.model.cataleg;
 
-import java.util.Observable;
+import java.util.*;
+
 import ub.edu.view.EscenaMain;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class WhatNext extends Observable {
+public class WhatNext extends Observable implements Observer {
 
     Map<ContingutDigital, String> whatNext;
 
@@ -33,4 +31,29 @@ public class WhatNext extends Observable {
         return new ArrayList<>(whatNext.keySet());
     }
 
+    public void update(Observable o, Object arg) {
+        if (o instanceof WatchedHistory) {
+            WatchedHistory wh = (WatchedHistory) o;
+            if (arg instanceof String) {
+                if (arg.equals("watchedHistory")) {
+                    System.out.println("WhatNext ha rebut un canvi de WatchedHistory");
+                    populateWhatNext(wh);
+                }
+            }
+        }
+    }
+
+    //all the elements of one will be delivered to the other
+    private void populateWhatNext(WatchedHistory wh) {
+        Map<ContingutDigital, String> watched = wh.getWatchedHistory();
+        //we add all the mapped elements to the whatnext
+        for (Map.Entry<ContingutDigital, String> entry : watched.entrySet()) {
+            ContingutDigital c = entry.getKey();
+            //if (!c.isFinished()) {
+                whatNext.put(c, entry.getValue());
+            //}
+        }
+        setChanged();
+        notifyObservers("whatNext");
+    }
 }
