@@ -1,6 +1,7 @@
 package ub.edu.model.cataleg;
 
 
+import ub.edu.model.MembershipStrategy;
 import ub.edu.model.Persona;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class GrupInteres {
     private String descripcioGrupInteres;
 
     private String codiAcces;
+
+    private MembershipStrategy membershipStrategy;
 
     public GrupInteres(String nomGrupInteres, String descripcioGrupInteres) {
         this.nomGrupInteres = nomGrupInteres;
@@ -109,5 +112,11 @@ public class GrupInteres {
 
         //persona.addGrupInteresMembership(this);
         //persona.addPunts(punts);
+    }
+
+    public void setMembershipStrategy(String strategy) {
+
+        String name = MembershipStrategy.class.getName();
+        membershipStrategy = (MembershipStrategy) Class.forName(name + "." + strategy).newInstance();
     }
 }

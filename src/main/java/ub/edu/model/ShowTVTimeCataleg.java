@@ -363,4 +363,10 @@ public class ShowTVTimeCataleg {
         }
         return null;
     }
+
+    public void setMembershipStrategy(String strategy) {
+        for (GrupInteres g : llistaGrupsInteres) {
+            g.setMembershipStrategy(strategy);
+        }
+    }
 }

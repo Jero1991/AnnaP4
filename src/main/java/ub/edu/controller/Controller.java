@@ -223,35 +223,7 @@ public class Controller {
         return modelFacade.findClientCartera(correuPersona);
     }
 
-
-/*
-    @Override
-    public void registerObserver(Observer o) {
-        observers.add(o);
+    public void setMembershipStrategy(String strategy) {
+        modelFacade.setMembershipStrategy(strategy);
     }
-
-    @Override
-    public void removeObserver(Observer o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void notifyObservers(Observable observable, String message) {
-        for (Observer o : observers) {
-            o.update(observable, message);
-        }
-    }
-
-    public String addToWatchedHistoryList(String nomContingut, String correuPersona, String data) {
-        /*try {
-            modelFacade.addToWatchedHistoryList(nomContingut, correuPersona, data);
-            return MessagesCAT.SuccessfulAddToWatchedHistory.getMessage();
-        } catch (Exception e) {
-            return MessagesCAT.translate(e);
-        }
-        String resultat = "Pel.licula afegida a watchedhistory";
-        //revisar
-        notifyObservers(new Observable(), resultat);
-        return resultat;
-    }*/
 }

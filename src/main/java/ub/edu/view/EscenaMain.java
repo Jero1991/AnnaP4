@@ -131,6 +131,7 @@ public class EscenaMain extends Escena implements Observer {
     }
 
     private void popularWhatNext() {
+
         nomColumnWhatNext.setCellValueFactory(new PropertyValueFactory<DataWatched, String>("nom"));
 
         List<HashMap<Object, Object>> listaObres = controller.getWatchNext(this.controller.getSessionMemory().getCorreuPersona());

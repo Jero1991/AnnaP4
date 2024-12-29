@@ -377,4 +377,8 @@ public class ModelFacade {
         }
         return null;
     }
+
+    public void setMembershipStrategy(String strategy) {
+        showTVTimeCataleg.setMembershipStrategy(strategy);
+    }
 }
