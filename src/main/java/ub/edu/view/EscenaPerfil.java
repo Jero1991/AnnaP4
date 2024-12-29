@@ -7,11 +7,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ub.edu.model.Persona;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
-public class EscenaPerfil extends Escena {
+public class EscenaPerfil extends Escena implements Observer {
 
     public TableView tableAllgroups;
     public TableColumn nomAllGroupsColumna;
@@ -76,6 +79,19 @@ public class EscenaPerfil extends Escena {
 
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Actualitzant grups als que segueix l'usuari");
+        if(o instanceof Persona){
+            System.out.println("Actualitzant grups als que segueix l'usuari");
+            if(arg instanceof String) {
+                String grup = (String) arg;
+                System.out.println("Actualitzant grups als que segueix l'usuari");
+                popularTaulaFollowingGroups();
+            }
+        }
+    }
+
 
     public static class DataList {
         //Cal deixar aquests atributs com finals per poder popular la taula quan el mètode  la cridi
@@ -111,6 +127,7 @@ public class EscenaPerfil extends Escena {
             controller.getSessionMemory().setNomGrup(nomGrup);
             controller.addFollower2Grup(controller.getSessionMemory().getCorreuPersona(), nomGrup);
 
+            /*
             try {
                 Escena escena = EscenaFactory.INSTANCE.creaEscena("MenuAccessos-view", "Selecciona una opció");
                 EscenaMenuAccessos escenaM = ((EscenaMenuAccessos)escena);
@@ -118,7 +135,7 @@ public class EscenaPerfil extends Escena {
                 escenaM.start();
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
             // TODO Pràctica 4: cal també controlar les situacions possibles d'error i
             // TODO mostrar-les per la finestra d'alertes
         }

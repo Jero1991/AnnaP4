@@ -117,19 +117,17 @@ public class GrupInteres {
     }
 
     public void setMembershipStrategy(String strategy) {
-<<<<<<< Updated upstream
         try {
             String name = MembershipStrategy.class.getName();
             membershipStrategy = (MembershipStrategy) Class.forName(name + "." + strategy).newInstance();
         } catch (Exception e) {
             System.out.println("Strategy not found");
-=======
+        }
         try{
             String name = MembershipStrategy.class.getName();
             membershipStrategy = (MembershipStrategy) Class.forName(name + "." + strategy).newInstance();
         } catch (Exception e) {
             System.out.println("Error al crear la Starategy");
->>>>>>> Stashed changes
         }
     }
 }

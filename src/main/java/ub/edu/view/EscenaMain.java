@@ -15,6 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import ub.edu.model.Persona;
 import ub.edu.model.cataleg.WatchedHistory;
 import ub.edu.model.cataleg.WhatNext;
 
@@ -365,6 +366,8 @@ public class EscenaMain extends Escena implements Observer {
         EscenaPerfil escenaPerfil = ((EscenaPerfil)escena);
         escenaPerfil.setController(controller);
         escenaPerfil.start();
+        Persona persona = controller.findClientCartera(controller.getSessionMemory().getCorreuPersona());
+        persona.addObserver(escenaPerfil);
     }
 
     public static class DataTop {

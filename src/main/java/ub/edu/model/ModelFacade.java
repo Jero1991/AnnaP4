@@ -224,81 +224,77 @@ public class ModelFacade {
 
     // TODO Pràctica 4: Cal afegir un mètode per poder obtenir els grups en els què l'usuari no es ni follower ni membre
     public List<HashMap<Object, Object>> getFollowingGrupsPerPersona(String correuPersona)  throws Exception {
-
-        //????? no utilizo el correo
         // TODO Pràctica 4: Cal  obtenir els grups que segueix la persona amb correu "correuPersona"
-        // Per a cada grup cal omplir la hashMap que espera la vista
-
-        //List<GrupInteres> grupsDisponibles = new ArrayList<>();
         // TODO: Cal que omplis list amb llista de grups que segueix la persona
-        // List<GrupInteres> list;
-        //for (GrupInteres g : list) {
-          //  HashMap<Object, Object> hashMap = new HashMap<>();
-          //  hashMap.put("id", i++);
-         //   hashMap.put("nom", g.getNom());
-         //   grupsDisponibles.add(hashMap);
-        //}
 
-       // return grupsDisponibles;
-        Persona persona = showTVTimePersones.findPersonaCartera(correuPersona);
-        List<GrupInteres> grupsDisponibles = persona.getGrupsInteres();
-        List<GrupInteres> grupsFollowed = persona.getGrupsInteresFollowed();
-        for (GrupInteres g : grupsDisponibles){
-            HashMap<Object, Object> grupsPersona = new HashMap<>();
-            grupsPersona.put("nom del grup: ", g.getNom());
-            grupsPersona.put("descripció: ", g.getDescripcioGrupInteres());
+        // TODO: Pràctica 4: Cal retornar els continguts de la watchedHistory del client amb correu correu
+
+        List<HashMap<Object,Object>> grupsFollowed = new ArrayList<>();
+        try{
+            Persona persona = showTVTimePersones.findPersonaCartera(correuPersona);
+            for (GrupInteres g : persona.getGrupsInteresFollowed()) {
+                HashMap<Object, Object> hashMap = new HashMap<>();
+                hashMap.put("nom", g.getNom());
+                hashMap.put("descripcio", g.getDescripcio());
+                grupsFollowed.add(hashMap);
+            }
+            System.out.println("Model Facade: getFollowingGrupsPerPersona -> correuPersona: " + correuPersona);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
         }
-        return null;
+
+        return grupsFollowed;
     }
 
     public List<HashMap<Object, Object>> getMemberGrupsPerPersona(String correuPersona) {
         // TODO Pràctica 4: Cal  obtenir els grups dels què és membre la persona amb correu "correuPersona"
         // Per a cada grup cal omplir la hashMap que espera la vista
-        List<HashMap<Object, Object>> grupsDisponibles = new ArrayList<>();
+        List<HashMap<Object, Object>> grupsMember = new ArrayList<>();
         try {
             Persona persona = showTVTimePersones.findPersonaCartera(correuPersona);
-            List<GrupInteres> grupsMembre = persona.getGrupsInteresMembership();
-            for (GrupInteres g : grupsMembre) {
+            for (GrupInteres g : persona.getGrupsInteresMembership()) {
                 HashMap<Object, Object> hashMap = new HashMap<>();
                 hashMap.put("nom", g.getNom());
-                hashMap.put("descripcio", g.getDescripcioGrupInteres());
-                grupsDisponibles.add(hashMap);
+                hashMap.put("descripcio", g.getDescripcio());
+                grupsMember.add(hashMap);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return grupsDisponibles;
+        return grupsMember;
 
 
         // TODO: Cal que omplis list amb llista de grups dels què és membre la persona
-        // List<GrupInteres> list;
-        //for (GrupInteres g : list) {
-        //  HashMap<Object, Object> hashMap = new HashMap<>();
-        //  hashMap.put("id", i++);
-        //   hashMap.put("nom", g.getNom());
-        //   grupsDisponibles.add(hashMap);
-        //}
 
-        // return grupsDisponibles;
     }
 
-    public void addFollowerGrup(String nomUsuari, String nomGrup) throws Exception {
+
+    public void addFollowerGrup(String nomUsuari, String nomGrup) {
         //Cal buscar la persona i el grup i despres cridar a afegir follower
-        Persona persona = showTVTimePersones.findPersonaCartera(nomUsuari);
-        GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
-        // TODO Pràctica 4: Cal afegir l'usuari "persona" com a follower del grup "grup"
-        if (persona != null && grup != null) {
-            grup.afegirFollower(persona);
+        try{
+            Persona persona = showTVTimePersones.findPersonaCartera(nomUsuari);
+            persona.afegirFollower(showTVTimeCataleg.findGrupInteres(nomGrup));
             System.out.println("Model Facade: addFollowerGrup -> nomUsuari: " + nomUsuari + " nomGrup: " + nomGrup);
-        }else{
-            throw new Exception(String.valueOf(MessagesCAT.FollowingException));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
+
+        // TODO Pràctica 4: Cal afegir l'usuari "persona" com a follower del grup "grup"
 
     }
 
     public void addMemberGrup(String nomUsuari, String nomGrup, int punts) throws Exception {
+        try{
+            Persona persona = showTVTimePersones.findPersonaCartera(nomUsuari);
+            persona.afegirMembre(showTVTimeCataleg.findGrupInteres(nomGrup));
+            System.out.println("Model Facade: addMemberGrup -> nomUsuari: " + nomUsuari + " nomGrup: " + nomGrup);
+            persona.addPunts(punts);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         //Cal buscar la persona i el grup i despres cridar a afegir member de showTVTimeGrups
-        Persona persona = showTVTimePersones.findPersonaCartera(nomUsuari);
+        /*Persona persona = showTVTimePersones.findPersonaCartera(nomUsuari);
         GrupInteres grup = showTVTimeCataleg.findGrupInteres(nomGrup);
         // TODO Pràctica 4: Cal afegir l'usuari "persona" com a membre del grup "grup"
         if (persona != null && grup != null) {
@@ -306,7 +302,7 @@ public class ModelFacade {
             System.out.println("Model Facade: addMemberGrup -> nomUsuari: " + nomUsuari + " nomGrup: " + nomGrup);
         }else{
             throw new Exception(String.valueOf(MessagesCAT.MemberExistsException));
-        }
+        }*/
     }
 
     public HashMap<String, String> sollicitarAcces(String tipusAcces, String correuPersona, String nomGrup) throws Exception{

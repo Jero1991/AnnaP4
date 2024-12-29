@@ -6,8 +6,9 @@ import ub.edu.model.cataleg.WhatNext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
-public class Persona {
+public class Persona extends Observable {
 
     private String pwd;
     private String nom;
@@ -113,5 +114,19 @@ public class Persona {
 
     public void removeGrupInteresFollowed(GrupInteres grup) {
         grupsInteresFollowed.remove(grup);
+    }
+
+    public void afegirFollower(GrupInteres grup) {
+        grupsInteresFollowed.add(grup);
+        System.out.println("Afegit a la llista de seguits");
+        setChanged();
+        notifyObservers();
+    }
+
+    public void afegirMembre(GrupInteres grupInteres) {
+        grupsInteresMembership.add(grupInteres);
+        System.out.println("Afegit a la llista de membres");
+        setChanged();
+        notifyObservers();
     }
 }
